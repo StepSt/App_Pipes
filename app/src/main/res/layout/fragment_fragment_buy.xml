@@ -1,0 +1,79 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Fragments.FragmentCalc"
+    android:background="@drawable/grid"
+    xmlns:foo="http://schemas.android.com/apk/res-auto">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top|left|bottom|right"
+        android:background="@drawable/rounded"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp">
+        <admin.example.com.pipes_v2.TextViewPlus
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ваш заказ:"
+            android:id="@+id/textView19"
+            android:layout_gravity="left|top"
+            foo:customFont="GOST type A.ttf"
+            android:textSize="30dp"
+            android:textColor="@color/white"/>
+        <admin.example.com.pipes_v2.TextViewPlus
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Количество элементов в заказе"
+            android:id="@+id/textView20"
+            android:layout_gravity="left|top"
+            foo:customFont="GOST type A.ttf"
+            android:textSize="20dp"
+            android:textColor="@color/white"/>
+        <admin.example.com.pipes_v2.TextViewPlus
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="30dp"
+            android:text="0"
+            android:id="@+id/textView18"
+            android:layout_gravity="right|top"
+            foo:customFont="GOST type A.ttf"
+            android:textSize="20dp"
+            android:textColor="@color/white"/>
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="60dp">
+            <ListView
+                android:id="@+id/lvMain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+            </ListView>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/button_order"
+                android:layout_marginTop="5dp"
+                android:text="@string/box">
+            </Button>
+        </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Заказать"
+            android:id="@+id/button"
+            android:layout_gravity="right|bottom" />
+    </FrameLayout>
+</FrameLayout>

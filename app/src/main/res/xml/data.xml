@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data>
+    <pipis>
+        <type_pipes>Труба БУ</type_pipes>
+        <L>1000</L>
+        <D>100</D>
+        <S>10</S>
+        <M>24.15</M>
+        <box>true</box>
+    </pipis>
+    <pipis>
+        <type_pipes>Труба восстановленная</type_pipes>
+        <L>1000</L>
+        <D>100</D>
+        <S>10</S>
+        <M>24.15</M>
+        <box>true</box>
+    </pipis>
+</data>
