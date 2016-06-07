@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ import admin.example.com.pipes_v2.R;
     SharedPreferences mSettings;
 
     FragmentCalc calc;
+    FragmentCalcRod calcRod;
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -39,28 +41,30 @@ import admin.example.com.pipes_v2.R;
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_main, container, false);
         String[] values = new String[] { "Штанга", "Труба профильная", "Лист профилный"};
-        ListView listView1 = (ListView) v.findViewById(R.id.list1);
+        final ListView listView1 = (ListView) v.findViewById(R.id.list1);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity().getBaseContext(),R.layout.spinner_item_menu_2, R.id.TextViewPlus_item_menu, values);
         listView1.setAdapter(adapter1);
+        listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                calcRod = new FragmentCalcRod();
+                FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
+                transaction_start.replace(R.id.container,calcRod).commit();
+                SharedPreferences.Editor editor = mSettings.edit();
+                editor.putString(APP_PREFERENCES_TYPE, listView1.getItemAtPosition(position).toString());
+                editor.apply();
+            }
+        });
         return v;
     }
 
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        Log.d("Log","1");
         calc = new FragmentCalc();
-        Log.d("Log","2");
         FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
-        Log.d("Log","3");
         transaction_start.replace(R.id.container,calc).commit();
-        Log.d("Log","4");
-
         SharedPreferences.Editor editor = mSettings.edit();
-        Log.d("Log","5");
         editor.putString(APP_PREFERENCES_TYPE, l.getItemAtPosition(position).toString());
-        Log.d("Log","6");
         editor.apply();
-
     }
-
 }
