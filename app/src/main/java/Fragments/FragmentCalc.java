@@ -193,6 +193,7 @@ private static final int REQUEST_WEIGHT = 1;
         edit_D = (EditText) v.findViewById(R.id.edit_D);
         final EditText edit_S = (EditText) v.findViewById(R.id.edit_S);
         final EditText edit_L = (EditText) v.findViewById(R.id.edit_L);
+
         edit_D.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.ADD);
         edit_S.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.ADD);
         edit_L.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.ADD);

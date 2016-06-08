@@ -152,6 +152,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="@color/yellow"
+                                android:id="@+id/edit_L"
                                 android:inputType="number"
                                 android:textSize="25dp"
                                 android:textAlignment="textEnd" />

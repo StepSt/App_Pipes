@@ -95,8 +95,8 @@ public class FragmentCalcRod extends Fragment {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 txt_D.setText(edit_D.getText().toString());
                 if(edit_L.getText().length() != 0){
-                    Double res_pM = 0.0;
-                    txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                    Double res_pM =Math.pow(Double.parseDouble(edit_D.getText().toString()),2)*Double.parseDouble(edit_L.getText().toString())/162.2;
+                    txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
                 }
                 return true;
             }
@@ -116,8 +116,8 @@ public class FragmentCalcRod extends Fragment {
             public void afterTextChanged(Editable s) {
                 txt_D.setText(edit_D.getText().toString());
                 if(edit_L.getText().length() != 0){
-                    Double res_pM= 0.0;
-                    txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                    Double res_pM =Math.pow(Double.parseDouble(edit_D.getText().toString()),2)*Double.parseDouble(edit_L.getText().toString())/162.2;
+                    txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
                 }
             }
         });
@@ -127,8 +127,8 @@ public class FragmentCalcRod extends Fragment {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 txt_L.setText(edit_L.getText().toString());
                 if(edit_D.getText().length() != 0){
-                    Double res_pM= 0.0;
-                    txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                    Double res_pM =Math.pow(Double.parseDouble(edit_D.getText().toString()),2)*Double.parseDouble(edit_L.getText().toString())/162.2;
+                    txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
                 }
                 return true;
             }
