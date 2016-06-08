@@ -31,6 +31,7 @@ import admin.example.com.pipes_v2.R;
     FragmentCalc calc;
 
     FragmentCalcRod calcRod;
+    FragmentCalcCut calcCut;
 
 
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -53,8 +54,17 @@ import admin.example.com.pipes_v2.R;
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 calcRod = new FragmentCalcRod();
+                calcCut = new FragmentCalcCut();
                 FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
-                transaction_start.replace(R.id.container,calcRod).commit();
+                switch (position)
+                {
+                    case 0:
+                        transaction_start.replace(R.id.container,calcRod).commit();
+                        break;
+                    case 1:
+                        transaction_start.replace(R.id.container,calcCut).commit();
+                        break;
+                }
                 SharedPreferences.Editor editor = mSettings.edit();
                 editor.putString(APP_PREFERENCES_TYPE, listView1.getItemAtPosition(position).toString());
                 editor.apply();
