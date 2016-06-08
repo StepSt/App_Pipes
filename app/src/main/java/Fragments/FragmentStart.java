@@ -10,7 +10,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.AdapterView;
+
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -27,7 +29,9 @@ import admin.example.com.pipes_v2.R;
     SharedPreferences mSettings;
 
     FragmentCalc calc;
+
     FragmentCalcRod calcRod;
+
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -41,6 +45,7 @@ import admin.example.com.pipes_v2.R;
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_main, container, false);
         String[] values = new String[] { "Штанга", "Труба профильная", "Лист профилный"};
+
         final ListView listView1 = (ListView) v.findViewById(R.id.list1);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity().getBaseContext(),R.layout.spinner_item_menu_2, R.id.TextViewPlus_item_menu, values);
         listView1.setAdapter(adapter1);
@@ -55,11 +60,13 @@ import admin.example.com.pipes_v2.R;
                 editor.apply();
             }
         });
+
         return v;
     }
 
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
+
         calc = new FragmentCalc();
         FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
         transaction_start.replace(R.id.container,calc).commit();

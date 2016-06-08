@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.net.Uri;
 
+
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
@@ -17,14 +18,39 @@ import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.v4.app.Fragment;
+
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
+import android.util.Xml;
+
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.EditText;
 
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.xmlpull.v1.XmlSerializer;
+
+import java.io.StringWriter;
+import java.lang.reflect.Array;
 
 import java.util.ArrayList;
 import java.util.Locale;
@@ -68,6 +94,7 @@ public class FragmentCalc extends Fragment
     TextView txt_c;
     TextView txt_D;
 
+
     EditText edit_D;
 
     public ArrayList<Product> products = new ArrayList<Product>();
@@ -81,7 +108,9 @@ private static final int REQUEST_WEIGHT = 1;
         Log.d("Log","openWeightPicker");
         Dialog_pipes_by fragment = new Dialog_pipes_by();
         fragment.setTargetFragment(this, REQUEST_WEIGHT);
+
         fragment.setArguments(bundle1);
+
         fragment.show(getFragmentManager(), fragment.getClass().getName());
     }
 
@@ -93,8 +122,12 @@ private static final int REQUEST_WEIGHT = 1;
                 case REQUEST_WEIGHT:
                     int weight = data.getIntExtra(Dialog_pipes_by.TAG_WEIGHT_SELECTED, -1);
                     //используем полученные результаты
+
                     edit_D.setText(weight + "");
                     //txt_D.setText(weight + "");
+
+                    txt_D.setText(weight + "");
+
                     //...
                     break;
                 case REQUEST_ANOTHER_ONE:
@@ -156,17 +189,27 @@ private static final int REQUEST_WEIGHT = 1;
 
         txt_pipes.setText(mSettings.getString(APP_PREFERENCES_TYPE, ""));
 
+
         edit_D = (EditText) v.findViewById(R.id.edit_D);
         final EditText edit_S = (EditText) v.findViewById(R.id.edit_S);
         final EditText edit_L = (EditText) v.findViewById(R.id.edit_L);
         edit_D.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.ADD);
         edit_S.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.ADD);
         edit_L.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.ADD);
+
+        final EditText edit_D = (EditText) v.findViewById(R.id.edit_D);
+
+        edit_D.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.ADD);
+        edit_S.getBackground().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+        edit_L.getBackground().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+
         final TextView txt_M = (TextView) v.findViewById(R.id.txt_M);
         txt_D = (TextView) v.findViewById(R.id.txt_D);
         final TextView txt_S = (TextView) v.findViewById(R.id.txt_S);
         final TextView txt_L = (TextView) v.findViewById(R.id.txt_L);
+
 //region Edit
+
         edit_D.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -178,6 +221,7 @@ private static final int REQUEST_WEIGHT = 1;
                 return true;
             }
         });
+
         edit_D.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -198,6 +242,7 @@ private static final int REQUEST_WEIGHT = 1;
                 }
             }
         });
+
         edit_S.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -220,6 +265,7 @@ private static final int REQUEST_WEIGHT = 1;
                 return true;
             }
         });
+
 
 //endregion
 
@@ -260,6 +306,7 @@ private static final int REQUEST_WEIGHT = 1;
                     else {
                         if(array_bu[i] > Integer.parseInt(txt_D.getText().toString())){
 
+
 Dialog_pipes_by fragment_1 = new Dialog_pipes_by();
                             bundle1 = new Bundle();
                             bundle1.putString("min",array_bu[i-1]+"");
@@ -267,6 +314,15 @@ Dialog_pipes_by fragment_1 = new Dialog_pipes_by();
 fragment_1.setArguments(bundle1);
                             Log.d("Log",">" + bundle1.getString("min"));
                             openWeightPicker();
+
+                            bundle1 = new Bundle();
+                            bundle1.putString("min",array_bu[i-1]+"");
+                            bundle1.putString("max", array_bu[i]+"");
+
+                            openWeightPicker();
+                            //user_d = dlg1.getTargetFragment().getArguments().getString("user_d");
+                            Log.d("Log", ">" + user_d);
+                            txt_D.setText(user_d);
 
                             break;
                         }
@@ -338,10 +394,6 @@ fragment_1.setArguments(bundle1);
 
     @Override
     public void setArguments(Bundle args) {
-
-        //Log.d("args", ">" + txt_D_user.toString());
-        user_d = args.getString("user_d").toString();
-
 
     }
 
