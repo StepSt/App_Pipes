@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -33,6 +34,7 @@ public class FragmentRegistration extends Fragment {
 
     public static final String APP_PREFERENCES = "mysettings";
     SharedPreferences mSettings;
+    FragmentBuy buy;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -74,15 +76,16 @@ public class FragmentRegistration extends Fragment {
         View v = inflater.inflate(R.layout.fragment_fragment_registration, container, false);
         //final SharedPreferences.Editor editor = mSettings.edit();
         final EditText name = (EditText) v.findViewById(R.id.edit_name);
-        EditText sname = (EditText) v.findViewById(R.id.edit_sname);
-        EditText trname = (EditText) v.findViewById(R.id.edit_trname);
-        EditText numphome = (EditText) v.findViewById(R.id.edit_numphone);
+        final EditText sname = (EditText) v.findViewById(R.id.edit_sname);
+        final EditText trname = (EditText) v.findViewById(R.id.edit_trname);
+        final EditText numphome = (EditText) v.findViewById(R.id.edit_numphone);
         LinearLayout save = (LinearLayout) v.findViewById(R.id.save);
+        buy = new FragmentBuy();
 
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(name.getText().length() == 0 ){
+                if(name.getText().length() == 0 && numphome.getText().length() == 0){
                     Toast toast = Toast.makeText(getActivity(),
                             "Заполните поля все поля отмеченные звездочкой (*)", Toast.LENGTH_SHORT);
                     toast.show();
@@ -90,7 +93,12 @@ public class FragmentRegistration extends Fragment {
                 else {
                     final SharedPreferences.Editor editor = mSettings.edit();
                     editor.putString("User_name",name.getText().toString());
+                    editor.putString("User_sname",sname.getText().toString());
+                    editor.putString("User_trname",trname.getText().toString());
+                    editor.putString("User_numphome",numphome.getText().toString());
                     editor.commit();
+                    FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
+                    transaction_start.replace(R.id.container,buy).commit();
                 }
             }
         });
