@@ -1,16 +1,20 @@
 package Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.text.Layout;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -67,6 +71,7 @@ public class FragmentBuy extends Fragment {
     private OnFragmentInteractionListener mListener;
 
     FragmentCalc calc;
+    FragmentRegistration registration;
 
     public FragmentBuy() {
         // Required empty public constructor
@@ -106,21 +111,34 @@ public class FragmentBuy extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_fragment_buy, container, false);
         calc = new FragmentCalc();
-
+        registration = new FragmentRegistration();
         //Bundle bundle = getArguments();
         //products = bundle.getParcelableArrayList("key");
         //Toast.makeText(getActivity(), bundle.getString("key").toString(), Toast.LENGTH_LONG).show();
 
         TextView txt_count = (TextView) v.findViewById(R.id.textView18);
-        Button bt1 = (Button) v.findViewById(R.id.button);
-        bt1.setOnClickListener(new View.OnClickListener() {
+        //region Sent
+
+        LinearLayout sent = (LinearLayout) v.findViewById(R.id.sent);
+        sent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // проверяем, первый ли раз открывается программа
                 SharedPreferences.Editor editor = mSettings.edit();
+                String hasIDuser = mSettings.getString("User_name", "");
+
+                if (hasIDuser == "") {
+                    // выводим нужную активность
+                    FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
+                    transaction_start.replace(R.id.container,registration).commit();
+                }
+
                 editor.putString(APP_PREFERENCES_COUNT, "0");
                 editor.apply();
             }
         });
+
+        //endregion
         int count = Integer.parseInt(mSettings.getString(APP_PREFERENCES_COUNT, ""));
         int i = 1;
         for (i = 1; i<= count; i++)

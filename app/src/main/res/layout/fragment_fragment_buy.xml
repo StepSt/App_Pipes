@@ -7,8 +7,6 @@
     xmlns:foo="http://schemas.android.com/apk/res-auto">
 
     <!-- TODO: Update blank fragment layout -->
-
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -52,14 +50,23 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:layout_marginTop="60dp">
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_marginTop="60dp"
+            android:id="@+id/one">
             <ListView
                 android:id="@+id/lvMain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
             </ListView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:id="@+id/two">
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,11 +76,50 @@
                 android:text="@string/box">
             </Button>
         </LinearLayout>
-        <Button
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Заказать"
-            android:id="@+id/button"
-            android:layout_gravity="right|bottom" />
+            android:id="@+id/tree"
+            android:layout_gravity="bottom"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.01"
+                android:id="@+id/imageView3"
+                android:layout_gravity="left|bottom"
+                android:src="@mipmap/logo_menu"
+                android:background="@drawable/rounded"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/sent"
+                android:layout_gravity="top"
+                android:background="@drawable/rounded"
+                android:layout_weight="0.01">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/icon_by"
+                    android:src="@drawable/ic_send_white_48px"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="Отправить"
+                    android:id="@+id/textView17"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="20dp"
+                    android:textColor="@color/white"
+                    android:gravity="center_vertical|center"
+                    android:layout_gravity="bottom|right"
+                    android:clickable="true"/>
+            </LinearLayout>
+
+        </LinearLayout>
     </FrameLayout>
 </FrameLayout>

@@ -82,7 +82,7 @@ public class FragmentCalc extends Fragment
     public static final String APP_PREFERENCES_NABOR9 = "nabor9"; //
     public static final String APP_PREFERENCES_NABOR10 = "nabor10"; //
     public static  final String APP_PREFERENCES_COUNT = "Count"; // cчетчик
-    public static  final String APP_PREFERENCES_D = "user_d";
+
     SharedPreferences mSettings;
     FragmentBuy buy;
 
