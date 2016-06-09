@@ -421,7 +421,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text=" "
-                        android:id="@+id/txt_D"
+                        android:id="@+id/txt_A"
                         android:inputType="text"
                         android:textAlignment="center"
                         android:background="@drawable/rounded"

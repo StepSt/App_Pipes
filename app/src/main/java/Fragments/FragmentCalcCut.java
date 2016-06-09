@@ -1,79 +1,245 @@
 package Fragments;
 
+import android.app.DialogFragment;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Locale;
+
+import admin.example.com.pipes_v2.Product;
 import admin.example.com.pipes_v2.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link FragmentCalcCut.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link FragmentCalcCut#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class FragmentCalcCut extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    public int count;
+    public static final String APP_PREFERENCES = "mysettings";
+    public static final String APP_PREFERENCES_TYPE = "Type_pipes"; //
+    public static final String APP_PREFERENCES_NABOR1 = "nabor1"; //
+    public static final String APP_PREFERENCES_NABOR2 = "nabor2"; //
+    public static final String APP_PREFERENCES_NABOR3 = "nabor3"; //
+    public static final String APP_PREFERENCES_NABOR4 = "nabor4"; //
+    public static final String APP_PREFERENCES_NABOR5 = "nabor5"; //
+    public static final String APP_PREFERENCES_NABOR6 = "nabor6"; //
+    public static final String APP_PREFERENCES_NABOR7 = "nabor7"; //
+    public static final String APP_PREFERENCES_NABOR8 = "nabor8"; //
+    public static final String APP_PREFERENCES_NABOR9 = "nabor9"; //
+    public static final String APP_PREFERENCES_NABOR10 = "nabor10"; //
+    public static  final String APP_PREFERENCES_COUNT = "Count"; // cчетчик
+    public static  final String APP_PREFERENCES_D = "user_d";
+    SharedPreferences mSettings;
+    FragmentBuy buy;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    DialogFragment dlg1;
+    Bundle bundle1;
 
+    TextView txt_c;
+    TextView txt_A;
+    TextView txt_B;
+
+    EditText edit_A;
+    EditText edit_B;
+    EditText edit_S;
     private OnFragmentInteractionListener mListener;
 
+    public ArrayList<Product> products = new ArrayList<Product>();
     public FragmentCalcCut() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentCalcCut.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static FragmentCalcCut newInstance(String param1, String param2) {
-        FragmentCalcCut fragment = new FragmentCalcCut();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        Context context = getActivity();
+        mSettings = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment_calc_cut, container, false);
-    }
+        View v = inflater.inflate(R.layout.fragment_fragment_calc_cut, container, false);
+//region FragmentCalc
+        buy = new FragmentBuy();
+        final TextView txt_pipes = (TextView) v.findViewById(R.id.txt_pipes);
 
+        txt_pipes.setText(mSettings.getString(APP_PREFERENCES_TYPE, ""));
+
+        edit_A = (EditText) v.findViewById(R.id.edit_A);
+        edit_B = (EditText) v.findViewById(R.id.edit_B);
+        edit_S = (EditText) v.findViewById(R.id.edit_S);
+        final EditText edit_L = (EditText) v.findViewById(R.id.edit_L);
+
+        edit_A.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.ADD);
+        edit_B.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.ADD);
+        edit_L.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.ADD);
+        edit_S.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.ADD);
+
+        final TextView txt_M = (TextView) v.findViewById(R.id.txt_M);
+        txt_A = (TextView) v.findViewById(R.id.txt_A);
+        txt_B = (TextView) v.findViewById(R.id.txt_B);
+        final TextView txt_S = (TextView) v.findViewById(R.id.txt_S);
+        final TextView txt_L = (TextView) v.findViewById(R.id.txt_L);
+
+        //edit_S.setText("0");
+//region Edit
+        edit_A.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                txt_A.setText(edit_A.getText().toString());
+                if(edit_B.getText().length() != 0 && edit_S.getText().length() != 0 && edit_L.getText().length() != 0){
+                    //0.0157 * S * (A + B - 2.86 * S) * L.
+                    Double res_pM = 0.0157 * Double.parseDouble(edit_S.getText().toString())*(Double.parseDouble(edit_A.getText().toString()) +
+                            Double.parseDouble(edit_B.getText().toString()) - 2.86 * Double.parseDouble(edit_S.getText().toString()))
+                            *Double.parseDouble(edit_L.getText().toString());
+                    txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
+                }
+                return true;
+            }
+        });
+        edit_B.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                txt_B.setText(edit_A.getText().toString());
+                if(edit_A.getText().length() != 0 && edit_S.getText().length() != 0 && edit_L.getText().length() != 0){
+                    //0.0157 * S * (A + B - 2.86 * S) * L.
+                    Double res_pM = 0.0157 * Double.parseDouble(edit_S.getText().toString())*(Double.parseDouble(edit_A.getText().toString()) +
+                            Double.parseDouble(edit_B.getText().toString()) - 2.86 * Double.parseDouble(edit_S.getText().toString()))
+                            *Double.parseDouble(edit_L.getText().toString());
+                    txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
+                }
+                return true;
+            }
+        });
+        edit_S.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                txt_S.setText(edit_A.getText().toString());
+                if(edit_B.getText().length() != 0 && edit_A.getText().length() != 0 && edit_L.getText().length() != 0){
+                    //0.0157 * S * (A + B - 2.86 * S) * L.
+                    Double res_pM = 0.0157 * Double.parseDouble(edit_S.getText().toString())*(Double.parseDouble(edit_A.getText().toString()) +
+                            Double.parseDouble(edit_B.getText().toString()) - 2.86 * Double.parseDouble(edit_S.getText().toString()))
+                            *Double.parseDouble(edit_L.getText().toString());
+                    txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
+                }
+                return true;
+            }
+        });
+
+        edit_L.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                txt_L.setText(edit_L.getText().toString());
+                if(edit_B.getText().length() != 0 && edit_S.getText().length() != 0 && edit_L.getText().length() != 0){
+                    Double res_pM = 0.0157 * Double.parseDouble(edit_S.getText().toString())*(Double.parseDouble(edit_A.getText().toString()) +
+                            Double.parseDouble(edit_B.getText().toString()) - 2.86 * Double.parseDouble(edit_S.getText().toString()))
+                            *Double.parseDouble(edit_L.getText().toString());
+                    txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
+                }
+                return true;
+            }
+        });
+
+//endregion
+
+        LinearLayout layout_by = (LinearLayout) v.findViewById(R.id.by);
+        layout_by.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
+                transaction_start.replace(R.id.container,buy).commit();
+            }
+        });
+
+        txt_c = (TextView) v.findViewById(R.id.txt_count);
+        txt_c.setText(mSettings.getString(APP_PREFERENCES_COUNT, ""));
+        try {
+            count = Integer.parseInt(txt_c.getText().toString());
+        }catch (Exception e){
+            count=0;
+        }
+
+
+        LinearLayout layout_add = (LinearLayout) v.findViewById(R.id.add);
+        layout_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                count = count +1;
+                txt_c.setText(Integer.toString(count));
+
+                SharedPreferences.Editor editor = mSettings.edit();
+                editor.putString(APP_PREFERENCES_COUNT, Integer.toString(count));
+
+                Product product = new Product(txt_pipes.getText().toString(),edit_L.getText().toString(),edit_A.getText().toString(),edit_B.getText().toString(),txt_M.getText().toString(), true);
+                switch (count){
+                    case 1 :
+                        editor.putString(APP_PREFERENCES_NABOR1,writeUsingNormalOperation(product));
+                        break;
+                    case 2 :
+                        editor.putString(APP_PREFERENCES_NABOR2,writeUsingNormalOperation(product));
+                        break;
+                    case 3 :
+                        editor.putString(APP_PREFERENCES_NABOR3,writeUsingNormalOperation(product));
+                        break;
+                    case 4 :
+                        editor.putString(APP_PREFERENCES_NABOR4,writeUsingNormalOperation(product));
+                        break;
+                    case 5 :
+                        editor.putString(APP_PREFERENCES_NABOR5,writeUsingNormalOperation(product));
+                        break;
+                    case 6 :
+                        editor.putString(APP_PREFERENCES_NABOR6,writeUsingNormalOperation(product));
+                        break;
+                    case 7 :
+                        editor.putString(APP_PREFERENCES_NABOR7,writeUsingNormalOperation(product));
+                        break;
+                    case 8 :
+                        editor.putString(APP_PREFERENCES_NABOR8,writeUsingNormalOperation(product));
+                        break;
+                    case 9 :
+                        editor.putString(APP_PREFERENCES_NABOR9,writeUsingNormalOperation(product));
+                        break;
+                }
+
+                editor.apply();
+            }
+        });
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList("key",products);
+        buy.setArguments(bundle);
+// endregion
+
+        // Inflate the layout for this fragment
+        return v;
+    }
+    public static String writeUsingNormalOperation(Product product) {
+        String format =
+                "<?xml version='1.0' encoding='UTF-8'?>" +
+                        "<data>" + "<pipis>" +"<type_pipes>%s</type_pipes>" +"<L>%s</L>" + "<D>%s</D>" +"<S>%s</S>" + "<M>%s</M>" + "<box>%s</box>" + "</pipis>" + "</data>";
+        return String.format(format,product.type_pipes, product.L, product.D, product.S, product.M, product.box + "");
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
     }
+
 
     @Override
     public void onDetach() {
