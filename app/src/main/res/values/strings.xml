@@ -7,6 +7,7 @@
     <string name="action_settings">Настройки</string>
     <string name="menu_cite">ufatruba.ru</string>
     <string name="menu_calk">Расчет</string>
+    <string name="menu_rate_load">Нормы провоза автомобильным транспортом</string>
     <string name="menu_about">О нас</string>
     <string name="menu_call">Позвонить</string>
     <string name="menu_price">Наши цены</string>

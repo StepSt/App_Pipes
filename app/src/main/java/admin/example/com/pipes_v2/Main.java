@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import Fragments.FragmentPrice;
 import Fragments.FragmentAbout;
 import Fragments.FragmentCalc;
+import Fragments.FragmentRateLoad;
 import Fragments.FragmentStart;
 
 import android.support.v4.app.FragmentActivity;
@@ -30,6 +31,7 @@ public class Main extends AppCompatActivity
     FragmentAbout about;
     FragmentCalc calc;
     FragmentStart start;
+    FragmentRateLoad rateLoad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,7 @@ public class Main extends AppCompatActivity
         about = new FragmentAbout();
         calc = new FragmentCalc();
         start = new FragmentStart();
+        rateLoad = new FragmentRateLoad();
 
         setTitle(getResources().getText(R.string.menu_calk));
         FragmentTransaction transaction_start = getSupportFragmentManager().beginTransaction();
@@ -113,7 +116,11 @@ public class Main extends AppCompatActivity
         if (id == R.id.nav_calk) {
             setTitle(getResources().getText(R.string.menu_calk));
             transaction.replace(R.id.container,start);
-        } else if (id == R.id.nav_about) {
+        } else if (id == R.id.nav_RateLoad) {
+            setTitle(getResources().getText(R.string.menu_rate_load));
+            transaction.replace(R.id.container,rateLoad);
+        }
+        else if (id == R.id.nav_about) {
             setTitle(getResources().getText(R.string.menu_about));
             transaction.replace(R.id.container,about);
 
