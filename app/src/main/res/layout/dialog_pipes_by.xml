@@ -29,13 +29,12 @@
             android:text="New CheckBox"
             android:id="@+id/checkBox_max"
             android:layout_gravity="center_horizontal|bottom" />
-
-
     <EditText
         android:id="@+id/txt_your_name"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:hint="Type your name"
         android:imeOptions="actionDone"
-        android:inputType="text" />
+        android:inputType="text"
+        android:visibility="gone"/>
 </LinearLayout>

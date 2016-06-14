@@ -52,6 +52,7 @@ public class FragmentBuy extends Fragment {
 
     public  ArrayList<Product> products = new ArrayList<Product>();
     public  BoxAdapter boxAdapter;
+    String message_string;
 
     public static final String APP_PREFERENCES = "mysettings";
     public static final String APP_PREFERENCES_TYPE = "Type_pipes"; //
@@ -132,9 +133,24 @@ public class FragmentBuy extends Fragment {
                     FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
                     transaction_start.replace(R.id.container,registration).commit();
                 }
+                else
+                {
+                    //region EMail
+                    message_string += "Имя заказчика: " + hasIDuser + "\n"
+                    + "Телефон заказчика: " + mSettings.getString("User_numphome","");
+                    Intent email = new Intent(Intent.ACTION_SEND);
+                    email.putExtra(Intent.EXTRA_EMAIL, new String[]{"legionst@gmail.com"});
+                    email.putExtra(Intent.EXTRA_SUBJECT, "subject");
+                    Log.d("Log>","message" + message_string);
+                    email.putExtra(Intent.EXTRA_TEXT, message_string);
+                    //email.setType("message/rfc822");
+                    email.setType("application/octet-stream");
+                    startActivity(Intent.createChooser(email, "Выберите email клиент :"));
+                    editor.putString(APP_PREFERENCES_COUNT, "0");
+                    editor.apply();
+                    //endregion
+                }
 
-                editor.putString(APP_PREFERENCES_COUNT, "0");
-                editor.apply();
             }
         });
 
@@ -179,6 +195,19 @@ public class FragmentBuy extends Fragment {
         lvMain.setAdapter(boxAdapter);
         txt_count.setText(boxAdapter.getCount() + "");
 
+        for (Product p : boxAdapter.getBox()) {
+            if (p.box)
+                if (p.S.length() == 0)
+                {
+                    message_string += "- Тип: " + p.type_pipes + " Диаметр наружный: " + p.D + " Длинна: " + p.L + " Масса: " + p.M + "\n";
+                }
+            else
+                {
+                    message_string += "- Тип: " + p.type_pipes + " Диаметр наружный: " + p.D + " Диаметр внутренний: " + p.S + " Длинна: " + p.L + " Масса: " + p.M + "\n";
+                }
+
+        }
+//regionn Button_order
         Button button_order = (Button) v.findViewById(R.id.button_order);
         button_order.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,7 +220,7 @@ public class FragmentBuy extends Fragment {
                 Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
             }
         });
-
+//endregion
         // Inflate the layout for this fragment
         return v;
     }

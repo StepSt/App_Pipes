@@ -250,7 +250,7 @@ private static final int REQUEST_WEIGHT = 1;
                 txt_S.setText(edit_S.getText().toString());
                 if(edit_D.getText().length() != 0 && edit_L.getText().length() != 0){
                     Double res_pM = ((Double.parseDouble(edit_D.getText().toString()) - Double.parseDouble(edit_S.getText().toString()))*Double.parseDouble(edit_S.getText().toString()))/40.55;
-                    txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                    txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
                 }
                 return true;
             }
@@ -261,7 +261,7 @@ private static final int REQUEST_WEIGHT = 1;
                 txt_L.setText(edit_L.getText().toString());
                 if(edit_S.getText().length() != 0 && edit_D.getText().length() != 0){
                     Double res_pM = ((Double.parseDouble(edit_D.getText().toString()) - Double.parseDouble(edit_S.getText().toString()))*Double.parseDouble(edit_S.getText().toString()))/40.55;
-                    txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                    txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
                 }
                 return true;
             }
@@ -316,11 +316,6 @@ fragment_1.setArguments(bundle1);
                             Log.d("Log",">" + bundle1.getString("min"));
                             openWeightPicker();
 
-                            bundle1 = new Bundle();
-                            bundle1.putString("min",array_bu[i-1]+"");
-                            bundle1.putString("max", array_bu[i]+"");
-
-                            openWeightPicker();
                             //user_d = dlg1.getTargetFragment().getArguments().getString("user_d");
                             Log.d("Log", ">" + user_d);
                             txt_D.setText(user_d);

@@ -32,6 +32,7 @@ import admin.example.com.pipes_v2.R;
 
     FragmentCalcRod calcRod;
     FragmentCalcCut calcCut;
+    FragmentCalcSheet calcSheet;
 
 
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ import admin.example.com.pipes_v2.R;
                                     int position, long id) {
                 calcRod = new FragmentCalcRod();
                 calcCut = new FragmentCalcCut();
+                calcSheet = new FragmentCalcSheet();
                 FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
                 switch (position)
                 {
@@ -63,6 +65,9 @@ import admin.example.com.pipes_v2.R;
                         break;
                     case 1:
                         transaction_start.replace(R.id.container,calcCut).commit();
+                        break;
+                    case 2:
+                        transaction_start.replace(R.id.container,calcSheet).commit();
                         break;
                 }
                 SharedPreferences.Editor editor = mSettings.edit();
