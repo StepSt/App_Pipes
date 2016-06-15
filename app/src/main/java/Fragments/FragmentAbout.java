@@ -1,7 +1,10 @@
 package Fragments;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +41,7 @@ public class FragmentAbout extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -72,8 +77,8 @@ public class FragmentAbout extends Fragment {
 
         // Updates the location and zoom of the MapView
         LatLng sydney = new LatLng(-34, 151);
-        map.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        //map.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+//        map.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
         return v;
 
@@ -92,11 +97,5 @@ public class FragmentAbout extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    /**private void openApp() {
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.setPackage("com.whatsapp"); //имя пакета приложения
-        intent.putExtra(Intent.EXTRA_TEXT, "hello word"); // текст отправки
-        startActivity(Intent.createChooser(intent, "Share with"));
-    }*/
+
 }

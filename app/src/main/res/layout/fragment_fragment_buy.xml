@@ -49,8 +49,8 @@
         <LinearLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_weight="1"
             android:layout_marginTop="60dp"
             android:id="@+id/one">
@@ -60,6 +60,20 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1">
             </ListView>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Доставка"
+                android:id="@+id/checkBox_delivery" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText_delivery"
+                android:inputType="textMultiLine"
+                android:visibility="invisible" />
+
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -80,18 +94,38 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:id="@+id/tree"
             android:layout_gravity="bottom"
             android:layout_weight="1">
-            <ImageView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.01"
-                android:id="@+id/imageView3"
-                android:layout_gravity="left|bottom"
-                android:src="@mipmap/logo_menu"
-                android:background="@drawable/rounded"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/clear"
+                android:layout_gravity="top"
+                android:background="@drawable/rounded"
+                android:layout_weight="1"
+                android:clickable="true">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/icon_clear"
+                    android:src="@drawable/ic_clear_white_48px"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="Очистить"
+                    android:id="@+id/textView24"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="20dp"
+                    android:textColor="@color/white"
+                    android:gravity="center_vertical|center"
+                    android:layout_gravity="bottom|right"
+                    android:clickable="true"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -100,7 +134,9 @@
                 android:id="@+id/sent"
                 android:layout_gravity="top"
                 android:background="@drawable/rounded"
-                android:layout_weight="0.01">
+                android:layout_weight="1
+                "
+                android:clickable="true">
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -122,5 +158,6 @@
             </LinearLayout>
 
         </LinearLayout>
+
     </FrameLayout>
 </FrameLayout>

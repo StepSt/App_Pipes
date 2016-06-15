@@ -3,8 +3,10 @@ package Fragments;
 import android.app.Activity;
 import android.app.DialogFragment;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -15,6 +17,7 @@ import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.LocalBroadcastManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -33,6 +36,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import android.widget.LinearLayout;
@@ -56,11 +63,20 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 import admin.example.com.pipes_v2.Dialog_pipes_by;
+import admin.example.com.pipes_v2.Main;
 import admin.example.com.pipes_v2.Product;
 import admin.example.com.pipes_v2.R;
 
-public class FragmentCalc extends Fragment
+public class FragmentCalc extends Fragment implements Main.OnBackPressedListener
 {
+    FragmentStart start;
+        @Override
+        public void onBackPressed() {
+            start= new FragmentStart();
+            FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
+            transaction_start.replace(R.id.container,start).commit();
+        }
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -99,7 +115,10 @@ public class FragmentCalc extends Fragment
 
     public ArrayList<Product> products = new ArrayList<Product>();
 
-    private OnFragmentInteractionListener mListener;
+    //private OnFragmentInteractionListener mListener;
+
+
+
 //region DialogFragment
 private static final int REQUEST_WEIGHT = 1;
     private static final int REQUEST_ANOTHER_ONE = 2;
@@ -147,15 +166,6 @@ private static final int REQUEST_WEIGHT = 1;
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentCalc.
-     */
-    // TODO: Rename and change types and number of parameters
     public static FragmentCalc newInstance(String param1, String param2) {
         FragmentCalc fragment = new FragmentCalc();
         Bundle args = new Bundle();
@@ -180,15 +190,12 @@ private static final int REQUEST_WEIGHT = 1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View v = inflater.inflate(R.layout.fragment_fragment_calc, container, false);
         buy = new FragmentBuy();
 
-
         final TextView txt_pipes = (TextView) v.findViewById(R.id.txt_pipes);
-
         txt_pipes.setText(mSettings.getString(APP_PREFERENCES_TYPE, ""));
-
 
         edit_D = (EditText) v.findViewById(R.id.edit_D);
         final EditText edit_S = (EditText) v.findViewById(R.id.edit_S);
@@ -197,12 +204,6 @@ private static final int REQUEST_WEIGHT = 1;
         edit_D.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.ADD);
         edit_S.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.ADD);
         edit_L.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.ADD);
-
-        final EditText edit_D = (EditText) v.findViewById(R.id.edit_D);
-
-        edit_D.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.ADD);
-        edit_S.getBackground().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
-        edit_L.getBackground().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
 
         final TextView txt_M = (TextView) v.findViewById(R.id.txt_M);
         txt_D = (TextView) v.findViewById(R.id.txt_D);
@@ -263,13 +264,14 @@ private static final int REQUEST_WEIGHT = 1;
                     Double res_pM = ((Double.parseDouble(edit_D.getText().toString()) - Double.parseDouble(edit_S.getText().toString()))*Double.parseDouble(edit_S.getText().toString()))/40.55;
                     txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
                 }
+                hideSoftKeyboard(getActivity());
                 return true;
             }
         });
 
 
 //endregion
-
+// region By_Button
         LinearLayout layout_by = (LinearLayout) v.findViewById(R.id.by);
         layout_by.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -285,14 +287,15 @@ private static final int REQUEST_WEIGHT = 1;
             count = Integer.parseInt(txt_c.getText().toString());
         }catch (Exception e){
             count=0;
+
         }
-
-
+        //endregion
+//region Add_Button
         LinearLayout layout_add = (LinearLayout) v.findViewById(R.id.add);
         layout_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+        Animation animation = null;
                 count = count +1;
                 txt_c.setText(Integer.toString(count));
 
@@ -355,44 +358,67 @@ fragment_1.setArguments(bundle1);
                         editor.putString(APP_PREFERENCES_NABOR9,writeUsingNormalOperation(product));
                         break;
                 }
-
+                animation = AnimationUtils.loadAnimation(getActivity(),R.anim.mycombo);
+                FrameLayout frameLayout = (FrameLayout) getActivity().findViewById(R.id.calc_pipes);
+                frameLayout.startAnimation(animation);
                 editor.apply();
+                edit_D.setText("");
+                edit_S.setText("");
+                edit_L.setText("");
             }
         });
+        //endregion
+        //region Clear_Button
+        LinearLayout cleaner = (LinearLayout) v.findViewById(R.id.clear);
+        cleaner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edit_D.setText("");
+                edit_S.setText("");
+                edit_L.setText("");
+            }
+        });
+        //endregion
+
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList("key",products);
         buy.setArguments(bundle);
-        //Toast.makeText(getActivity(), bundle.getString("key").toString(), Toast.LENGTH_LONG).show();
-
-                  //return inflater.inflate(R.layout.fragment_fragment_calc, container, false);
-
         return v;
-
     }
     public static String writeUsingNormalOperation(Product product) {
         String format =
                 "<?xml version='1.0' encoding='UTF-8'?>" +
-                        "<data>" + "<pipis>" +"<type_pipes>%s</type_pipes>" +"<L>%s</L>" + "<D>%s</D>" +"<S>%s</S>" + "<M>%s</M>" + "<box>%s</box>" + "</pipis>" + "</data>";
+                        "<data>" + "<pipes>" +"<type_pipes>%s</type_pipes>" +"<L>%s</L>" + "<D>%s</D>" +"<S>%s</S>" + "<M>%s</M>" + "<box>%s</box>" + "</pipis>" + "</data>";
         return String.format(format,product.type_pipes, product.L, product.D, product.S, product.M, product.box + "");
     }
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+    /**
+        public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+        */
+    public static void hideSoftKeyboard(Activity activity) {
+        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
     }
 
+}
+
+
+/**
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
 
+
     @Override
     public void setArguments(Bundle args) {
 
     }
-
+*/
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -403,11 +429,11 @@ fragment_1.setArguments(bundle1);
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
+    /**
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-    }
+    }*/
 
 
-}
 

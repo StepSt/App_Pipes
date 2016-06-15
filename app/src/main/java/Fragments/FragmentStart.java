@@ -1,11 +1,15 @@
 package Fragments;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,7 +38,6 @@ import admin.example.com.pipes_v2.R;
     FragmentCalcCut calcCut;
     FragmentCalcSheet calcSheet;
 
-
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         String[] values = new String[] { "Труба БУ", "Труба восстановленная", "Труба НКТ"};
@@ -46,7 +49,7 @@ import admin.example.com.pipes_v2.R;
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_main, container, false);
-        String[] values = new String[] { "Штанга", "Труба профильная", "Лист профилный"};
+        String[] values = new String[] { "Штанга", "Труба профильная", "Лист профильный"};
 
         final ListView listView1 = (ListView) v.findViewById(R.id.list1);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity().getBaseContext(),R.layout.spinner_item_menu_2, R.id.TextViewPlus_item_menu, values);
