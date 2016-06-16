@@ -75,6 +75,7 @@ public class FragmentCalc extends Fragment implements Main.OnBackPressedListener
             start= new FragmentStart();
             FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
             transaction_start.replace(R.id.container,start).commit();
+            getActivity().setTitle(R.string.menu_calk);
         }
 
     // TODO: Rename parameter arguments, choose names that match
@@ -105,18 +106,13 @@ public class FragmentCalc extends Fragment implements Main.OnBackPressedListener
     public int[] array_bu = new int[] {114,159,168,219,273,300,325,377,426,530,720,820,1220};
     DialogFragment dlg1;
     Bundle bundle1;
-    String user_d;
-
     TextView txt_c;
     TextView txt_D;
-
-
     EditText edit_D;
 
     public ArrayList<Product> products = new ArrayList<Product>();
 
     //private OnFragmentInteractionListener mListener;
-
 
 
 //region DialogFragment
@@ -145,7 +141,7 @@ private static final int REQUEST_WEIGHT = 1;
                     edit_D.setText(weight + "");
                     //txt_D.setText(weight + "");
 
-                    txt_D.setText(weight + "");
+                    txt_D.setText(" D = " + weight + "");
 
                     //...
                     break;
@@ -211,19 +207,6 @@ private static final int REQUEST_WEIGHT = 1;
         final TextView txt_L = (TextView) v.findViewById(R.id.txt_L);
 
 //region Edit
-
-        edit_D.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                txt_D.setText(edit_D.getText().toString());
-                if(edit_S.getText().length() != 0 && edit_L.getText().length() != 0){
-                    Double res_pM = ((Double.parseDouble(edit_D.getText().toString()) - Double.parseDouble(edit_S.getText().toString()))*Double.parseDouble(edit_S.getText().toString()))/40.55;
-                    txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
-                }
-                return true;
-            }
-        });
-
         edit_D.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -237,14 +220,71 @@ private static final int REQUEST_WEIGHT = 1;
 
             @Override
             public void afterTextChanged(Editable s) {
+                if (edit_D.getText().toString().length() != 0){
+                    txt_D.setText(" D = " + edit_D.getText().toString());
+                    if(edit_S.getText().length() != 0 && edit_L.getText().length() != 0){
+                        Double res_pM = ((Double.parseDouble(edit_D.getText().toString()) - Double.parseDouble(edit_S.getText().toString()))*Double.parseDouble(edit_S.getText().toString()))/40.55;
+                        txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                    }
+                }
+            }
+        });
+        edit_S.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (edit_S.getText().toString().length() != 0){
+                    txt_S.setText(" S = " + edit_S.getText().toString());
+                    if(edit_D.getText().length() != 0 && edit_L.getText().length() != 0){
+                        Double res_pM = ((Double.parseDouble(edit_D.getText().toString()) - Double.parseDouble(edit_S.getText().toString()))*Double.parseDouble(edit_S.getText().toString()))/40.55;
+                        txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                    }
+                }
+            }
+        });
+        edit_L.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (edit_L.getText().toString().length() != 0){
+                    txt_L.setText(" L = " + edit_L.getText().toString());
+                    if(edit_D.getText().length() != 0 && edit_S.getText().length() != 0){
+                        Double res_pM = ((Double.parseDouble(edit_D.getText().toString()) - Double.parseDouble(edit_S.getText().toString()))*Double.parseDouble(edit_S.getText().toString()))/40.55;
+                        txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                    }
+                }
+            }
+        });
+/**
+        edit_D.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 txt_D.setText(edit_D.getText().toString());
                 if(edit_S.getText().length() != 0 && edit_L.getText().length() != 0){
                     Double res_pM = ((Double.parseDouble(edit_D.getText().toString()) - Double.parseDouble(edit_S.getText().toString()))*Double.parseDouble(edit_S.getText().toString()))/40.55;
                     txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
                 }
+                return true;
             }
         });
-
         edit_S.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -268,8 +308,7 @@ private static final int REQUEST_WEIGHT = 1;
                 return true;
             }
         });
-
-
+*/
 //endregion
 // region By_Button
         LinearLayout layout_by = (LinearLayout) v.findViewById(R.id.by);
@@ -295,76 +334,75 @@ private static final int REQUEST_WEIGHT = 1;
         layout_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-        Animation animation = null;
-                count = count +1;
-                txt_c.setText(Integer.toString(count));
-
-                SharedPreferences.Editor editor = mSettings.edit();
-                editor.putString(APP_PREFERENCES_COUNT, Integer.toString(count));
-
-                for(int i=0; i<= array_bu.length; i++) {
-                    Log.d("Log",">" + txt_D.getText().toString());
-                    if (array_bu[i] == Integer.parseInt(txt_D.getText().toString())){
-                        break;
-                    }
-                    else {
-                        if(array_bu[i] > Integer.parseInt(txt_D.getText().toString())){
-
-
-Dialog_pipes_by fragment_1 = new Dialog_pipes_by();
-                            bundle1 = new Bundle();
-                            bundle1.putString("min",array_bu[i-1]+"");
-                            bundle1.putString("max", array_bu[i]+"");
-fragment_1.setArguments(bundle1);
-                            Log.d("Log",">" + bundle1.getString("min"));
-                            openWeightPicker();
-
-                            //user_d = dlg1.getTargetFragment().getArguments().getString("user_d");
-                            Log.d("Log", ">" + user_d);
-                            txt_D.setText(user_d);
-
+                Animation animation = null;
+                if(edit_D.getText().toString().length() == 0 && edit_S.getText().toString().length() == 0 && edit_L.getText().toString().length() == 0)
+                {
+                    Toast toast = Toast.makeText(getActivity(),
+                            "Введите параметры для расчета", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else
+                {
+                    for(int i=0; i<= array_bu.length; i++) {
+                        if (array_bu[i] == Integer.parseInt(edit_D.getText().toString())){
+                            count = count +1;
+                            txt_c.setText(Integer.toString(count));
+                            SharedPreferences.Editor editor = mSettings.edit();
+                            editor.putString(APP_PREFERENCES_COUNT, Integer.toString(count));
+                            Product product = new Product(txt_pipes.getText().toString(),txt_L.getText().toString(),txt_D.getText().toString(),txt_S.getText().toString(),txt_M.getText().toString(), true);
+                            switch (count){
+                                case 1 :
+                                    editor.putString(APP_PREFERENCES_NABOR1,writeUsingNormalOperation(product));
+                                    break;
+                                case 2 :
+                                    editor.putString(APP_PREFERENCES_NABOR2,writeUsingNormalOperation(product));
+                                    break;
+                                case 3 :
+                                    editor.putString(APP_PREFERENCES_NABOR3,writeUsingNormalOperation(product));
+                                    break;
+                                case 4 :
+                                    editor.putString(APP_PREFERENCES_NABOR4,writeUsingNormalOperation(product));
+                                    break;
+                                case 5 :
+                                    editor.putString(APP_PREFERENCES_NABOR5,writeUsingNormalOperation(product));
+                                    break;
+                                case 6 :
+                                    editor.putString(APP_PREFERENCES_NABOR6,writeUsingNormalOperation(product));
+                                    break;
+                                case 7 :
+                                    editor.putString(APP_PREFERENCES_NABOR7,writeUsingNormalOperation(product));
+                                    break;
+                                case 8 :
+                                    editor.putString(APP_PREFERENCES_NABOR8,writeUsingNormalOperation(product));
+                                    break;
+                                case 9 :
+                                    editor.putString(APP_PREFERENCES_NABOR9,writeUsingNormalOperation(product));
+                                    break;
+                            }
+                            animation = AnimationUtils.loadAnimation(getActivity(),R.anim.mycombo);
+                            FrameLayout frameLayout = (FrameLayout) getActivity().findViewById(R.id.calc_pipes);
+                            frameLayout.startAnimation(animation);
+                            editor.apply();
+                            edit_D.setText("");
+                            edit_S.setText("");
+                            edit_L.setText("");
                             break;
+                        }
+                        else {
+                            if(array_bu[i] > Integer.parseInt(edit_D.getText().toString())){
+                                Dialog_pipes_by fragment_1 = new Dialog_pipes_by();
+                                bundle1 = new Bundle();
+                                bundle1.putString("min",array_bu[i-1]+"");
+                                bundle1.putString("max", array_bu[i]+"");
+                                fragment_1.setArguments(bundle1);
+                                openWeightPicker();
+                                break;
+                            }
                         }
                     }
                 }
 
-                Product product = new Product(txt_pipes.getText().toString(),edit_L.getText().toString(),edit_D.getText().toString(),edit_S.getText().toString(),txt_M.getText().toString(), true);
-                switch (count){
-                    case 1 :
-                        editor.putString(APP_PREFERENCES_NABOR1,writeUsingNormalOperation(product));
-                        break;
-                    case 2 :
-                        editor.putString(APP_PREFERENCES_NABOR2,writeUsingNormalOperation(product));
-                        break;
-                    case 3 :
-                        editor.putString(APP_PREFERENCES_NABOR3,writeUsingNormalOperation(product));
-                        break;
-                    case 4 :
-                        editor.putString(APP_PREFERENCES_NABOR4,writeUsingNormalOperation(product));
-                        break;
-                    case 5 :
-                        editor.putString(APP_PREFERENCES_NABOR5,writeUsingNormalOperation(product));
-                        break;
-                    case 6 :
-                        editor.putString(APP_PREFERENCES_NABOR6,writeUsingNormalOperation(product));
-                        break;
-                    case 7 :
-                        editor.putString(APP_PREFERENCES_NABOR7,writeUsingNormalOperation(product));
-                        break;
-                    case 8 :
-                        editor.putString(APP_PREFERENCES_NABOR8,writeUsingNormalOperation(product));
-                        break;
-                    case 9 :
-                        editor.putString(APP_PREFERENCES_NABOR9,writeUsingNormalOperation(product));
-                        break;
-                }
-                animation = AnimationUtils.loadAnimation(getActivity(),R.anim.mycombo);
-                FrameLayout frameLayout = (FrameLayout) getActivity().findViewById(R.id.calc_pipes);
-                frameLayout.startAnimation(animation);
-                editor.apply();
-                edit_D.setText("");
-                edit_S.setText("");
-                edit_L.setText("");
+
             }
         });
         //endregion
@@ -388,7 +426,7 @@ fragment_1.setArguments(bundle1);
     public static String writeUsingNormalOperation(Product product) {
         String format =
                 "<?xml version='1.0' encoding='UTF-8'?>" +
-                        "<data>" + "<pipes>" +"<type_pipes>%s</type_pipes>" +"<L>%s</L>" + "<D>%s</D>" +"<S>%s</S>" + "<M>%s</M>" + "<box>%s</box>" + "</pipis>" + "</data>";
+                        "<data>" + "<pipes>" +"<type_pipes>%s</type_pipes>" +"<L>%s</L>" + "<D>%s</D>" +"<S>%s</S>" + "<M>%s</M>" + "<box>%s</box>" + "</pipes>" + "</data>";
         return String.format(format,product.type_pipes, product.L, product.D, product.S, product.M, product.box + "");
     }
     // TODO: Rename method, update argument and hook method into UI event

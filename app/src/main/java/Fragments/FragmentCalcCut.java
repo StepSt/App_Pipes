@@ -15,17 +15,30 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Locale;
 
+import admin.example.com.pipes_v2.Main;
 import admin.example.com.pipes_v2.Product;
 import admin.example.com.pipes_v2.R;
 
-public class FragmentCalcCut extends Fragment {
+public class FragmentCalcCut extends Fragment implements Main.OnBackPressedListener
+        {
+        FragmentStart start;
+@Override
+public void onBackPressed() {
+        start= new FragmentStart();
+        FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
+        transaction_start.replace(R.id.container,start).commit();
+        }
     public int count;
     public static final String APP_PREFERENCES = "mysettings";
     public static final String APP_PREFERENCES_TYPE = "Type_pipes"; //
@@ -96,7 +109,104 @@ public class FragmentCalcCut extends Fragment {
         final TextView txt_L = (TextView) v.findViewById(R.id.txt_L);
 
         //edit_S.setText("0");
-//region Edit
+        //region Edit
+        edit_A.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (edit_A.getText().toString().length() != 0){
+                    txt_A.setText(" А = " + edit_A.getText().toString());
+                    if(edit_B.getText().length() != 0 && edit_S.getText().length() != 0 && edit_L.getText().length() != 0){
+                        Double res_pM = 0.0157 * Double.parseDouble(edit_S.getText().toString())*(Double.parseDouble(edit_A.getText().toString()) +
+                                Double.parseDouble(edit_B.getText().toString()) - 2.86 * Double.parseDouble(edit_S.getText().toString()))
+                                *Double.parseDouble(edit_L.getText().toString());
+                        txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                    }
+                }
+            }
+        });
+        edit_B.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (edit_B.getText().toString().length() != 0){
+                    txt_B.setText(" B = " + edit_B.getText().toString());
+                    if(edit_A.getText().length() != 0 && edit_S.getText().length() != 0 && edit_L.getText().length() != 0){
+                        Double res_pM = 0.0157 * Double.parseDouble(edit_S.getText().toString())*(Double.parseDouble(edit_A.getText().toString()) +
+                                Double.parseDouble(edit_B.getText().toString()) - 2.86 * Double.parseDouble(edit_S.getText().toString()))
+                                *Double.parseDouble(edit_L.getText().toString());
+                        txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                    }
+                }
+            }
+        });
+        edit_S.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (edit_S.getText().toString().length() != 0){
+                    txt_S.setText(" S = " + edit_S.getText().toString());
+                    if(edit_B.getText().length() != 0 && edit_A.getText().length() != 0 && edit_L.getText().length() != 0){
+                        Double res_pM = 0.0157 * Double.parseDouble(edit_S.getText().toString())*(Double.parseDouble(edit_A.getText().toString()) +
+                                Double.parseDouble(edit_B.getText().toString()) - 2.86 * Double.parseDouble(edit_S.getText().toString()))
+                                *Double.parseDouble(edit_L.getText().toString());
+                        txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                    }
+                }
+            }
+        });
+        edit_L.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (edit_L.getText().toString().length() != 0){
+                    txt_L.setText(" L = " + edit_L.getText().toString());
+                    if(edit_A.getText().length() != 0 && edit_S.getText().length() != 0 && edit_B.getText().length() != 0){
+                        Double res_pM = 0.0157 * Double.parseDouble(edit_S.getText().toString())*(Double.parseDouble(edit_A.getText().toString()) +
+                                Double.parseDouble(edit_B.getText().toString()) - 2.86 * Double.parseDouble(edit_S.getText().toString()))
+                                *Double.parseDouble(edit_L.getText().toString());
+                        txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                    }
+                }
+            }
+        });
+        /**
         edit_A.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -153,9 +263,21 @@ public class FragmentCalcCut extends Fragment {
                 return true;
             }
         });
-
+*/
 //endregion
-
+        //region Clear_Button
+        LinearLayout cleaner = (LinearLayout) v.findViewById(R.id.clear);
+        cleaner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edit_A.setText("");
+                edit_B.setText("");
+                edit_S.setText("");
+                edit_L.setText("");
+            }
+        });
+        //endregion
+        //region By_Button
         LinearLayout layout_by = (LinearLayout) v.findViewById(R.id.by);
         layout_by.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,52 +295,72 @@ public class FragmentCalcCut extends Fragment {
             count=0;
         }
 
-
+//endregion
+        //region Add_Button
         LinearLayout layout_add = (LinearLayout) v.findViewById(R.id.add);
         layout_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Animation animation = null;
+                if(edit_A.getText().toString().length() == 0 && edit_B.getText().toString().length() == 0 && edit_S.getText().toString().length() == 0 && edit_L.getText().toString().length() == 0)
+                {
+                    Toast toast = Toast.makeText(getActivity(),
+                            "Введите параметры для расчета", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else
+                {
+                    count = count +1;
+                    txt_c.setText(Integer.toString(count));
 
-                count = count +1;
-                txt_c.setText(Integer.toString(count));
+                    SharedPreferences.Editor editor = mSettings.edit();
+                    editor.putString(APP_PREFERENCES_COUNT, Integer.toString(count));
 
-                SharedPreferences.Editor editor = mSettings.edit();
-                editor.putString(APP_PREFERENCES_COUNT, Integer.toString(count));
+                    Product product = new Product(txt_pipes.getText().toString(),txt_L.getText().toString(),txt_A.getText().toString(),txt_B.getText().toString(),txt_M.getText().toString(), true);
+                    switch (count){
+                        case 1 :
+                            editor.putString(APP_PREFERENCES_NABOR1,writeUsingNormalOperation(product));
+                            break;
+                        case 2 :
+                            editor.putString(APP_PREFERENCES_NABOR2,writeUsingNormalOperation(product));
+                            break;
+                        case 3 :
+                            editor.putString(APP_PREFERENCES_NABOR3,writeUsingNormalOperation(product));
+                            break;
+                        case 4 :
+                            editor.putString(APP_PREFERENCES_NABOR4,writeUsingNormalOperation(product));
+                            break;
+                        case 5 :
+                            editor.putString(APP_PREFERENCES_NABOR5,writeUsingNormalOperation(product));
+                            break;
+                        case 6 :
+                            editor.putString(APP_PREFERENCES_NABOR6,writeUsingNormalOperation(product));
+                            break;
+                        case 7 :
+                            editor.putString(APP_PREFERENCES_NABOR7,writeUsingNormalOperation(product));
+                            break;
+                        case 8 :
+                            editor.putString(APP_PREFERENCES_NABOR8,writeUsingNormalOperation(product));
+                            break;
+                        case 9 :
+                            editor.putString(APP_PREFERENCES_NABOR9,writeUsingNormalOperation(product));
+                            break;
+                    }
 
-                Product product = new Product(txt_pipes.getText().toString(),edit_L.getText().toString(),edit_A.getText().toString(),edit_B.getText().toString(),txt_M.getText().toString(), true);
-                switch (count){
-                    case 1 :
-                        editor.putString(APP_PREFERENCES_NABOR1,writeUsingNormalOperation(product));
-                        break;
-                    case 2 :
-                        editor.putString(APP_PREFERENCES_NABOR2,writeUsingNormalOperation(product));
-                        break;
-                    case 3 :
-                        editor.putString(APP_PREFERENCES_NABOR3,writeUsingNormalOperation(product));
-                        break;
-                    case 4 :
-                        editor.putString(APP_PREFERENCES_NABOR4,writeUsingNormalOperation(product));
-                        break;
-                    case 5 :
-                        editor.putString(APP_PREFERENCES_NABOR5,writeUsingNormalOperation(product));
-                        break;
-                    case 6 :
-                        editor.putString(APP_PREFERENCES_NABOR6,writeUsingNormalOperation(product));
-                        break;
-                    case 7 :
-                        editor.putString(APP_PREFERENCES_NABOR7,writeUsingNormalOperation(product));
-                        break;
-                    case 8 :
-                        editor.putString(APP_PREFERENCES_NABOR8,writeUsingNormalOperation(product));
-                        break;
-                    case 9 :
-                        editor.putString(APP_PREFERENCES_NABOR9,writeUsingNormalOperation(product));
-                        break;
+                    editor.apply();
+                    animation = AnimationUtils.loadAnimation(getActivity(),R.anim.mycombo);
+                    FrameLayout frameLayout = (FrameLayout) getActivity().findViewById(R.id.calc_cut);
+                    frameLayout.startAnimation(animation);
+                    editor.apply();
+                    edit_A.setText("");
+                    edit_B.setText("");
+                    edit_S.setText("");
+                    edit_L.setText("");
                 }
 
-                editor.apply();
             }
         });
+        //endrerion
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList("key",products);
         buy.setArguments(bundle);

@@ -115,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/edit_numphone"
                     android:textColor="@color/yellow"
-                    android:inputType="number"
+                    android:inputType="phone"
                     android:textSize="25dp"
                     android:textAlignment="textEnd" />
             </LinearLayout>

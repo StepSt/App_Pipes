@@ -11,6 +11,7 @@ import android.os.Bundle;
 
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 
 import android.support.v4.content.LocalBroadcastManager;
@@ -19,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import admin.example.com.pipes_v2.Main;
 import admin.example.com.pipes_v2.R;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -30,7 +32,16 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
-public class FragmentAbout extends Fragment {
+public class FragmentAbout extends Fragment implements Main.OnBackPressedListener
+{
+    FragmentStart start;
+    @Override
+    public void onBackPressed() {
+        start= new FragmentStart();
+        FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
+        transaction_start.replace(R.id.container,start).commit();
+        getActivity().setTitle(R.string.menu_calk);
+    }
 
     private static final int REQUEST_FINE_LOCATION = 11;
     MapView mapView;

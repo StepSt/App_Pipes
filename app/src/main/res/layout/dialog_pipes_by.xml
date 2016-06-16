@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:text="New CheckBox"
             android:id="@+id/checkBox_max"
-            android:layout_gravity="center_horizontal|bottom" />
+            android:layout_gravity="bottom|center_horizontal" />
     <EditText
         android:id="@+id/txt_your_name"
         android:layout_width="match_parent"

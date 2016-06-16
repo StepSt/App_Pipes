@@ -4,10 +4,12 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import admin.example.com.pipes_v2.Main;
 import admin.example.com.pipes_v2.R;
 
 /**
@@ -18,7 +20,16 @@ import admin.example.com.pipes_v2.R;
  * Use the {@link FragmentDecking#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentDecking extends Fragment {
+public class FragmentDecking extends Fragment implements Main.OnBackPressedListener
+{
+    FragmentStart start;
+    @Override
+    public void onBackPressed() {
+        start= new FragmentStart();
+        FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
+        transaction_start.replace(R.id.container,start).commit();
+        getActivity().setTitle(R.string.menu_calk);
+    }
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";

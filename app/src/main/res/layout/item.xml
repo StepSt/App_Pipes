@@ -21,7 +21,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:textSize="20sp">
+            android:textSize="13dp"
+            android:layout_gravity="center_vertical">
         </TextView>
         <TextView
             android:id="@+id/tvL"
@@ -29,28 +30,32 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:text=""
-            android:textSize="20sp">
+            android:textSize="13dp"
+            android:layout_gravity="center_vertical">
         </TextView>
         <TextView
             android:id="@+id/tvD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:textSize="20sp">
+            android:textSize="13dp"
+            android:layout_gravity="center_vertical">
         </TextView>
         <TextView
             android:id="@+id/tvS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
-            android:textSize="20sp">
+            android:textSize="13dp"
+            android:layout_gravity="center_vertical">
         </TextView>
             <TextView
                 android:id="@+id/tvM"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textSize="20sp">
+                android:textSize="13dp"
+                android:layout_gravity="center_vertical">
             </TextView>
     </LinearLayout>
 </LinearLayout>

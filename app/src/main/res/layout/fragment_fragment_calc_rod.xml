@@ -17,7 +17,8 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp"
+        android:id="@+id/calc_rod">
 
 
         <LinearLayout
@@ -193,17 +194,37 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:id="@+id/podval"
             android:layout_gravity="bottom">
-            <ImageView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.01"
-                android:id="@+id/imageView3"
-                android:layout_gravity="left|bottom"
-                android:src="@mipmap/logo_menu"
-                android:background="@drawable/rounded"/>
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/clear"
+                android:layout_gravity="top"
+                android:background="@drawable/rounded"
+                android:layout_weight="1"
+                android:clickable="true">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/icon_clear"
+                    android:src="@drawable/ic_clear_white_48px"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="Очистить"
+                    android:id="@+id/textView24"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="20dp"
+                    android:textColor="@color/white"
+                    android:gravity="center_vertical|center"
+                    android:layout_gravity="bottom|right"
+                    android:clickable="true"/>
+            </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -211,7 +232,7 @@
                 android:id="@+id/add"
                 android:layout_gravity="top"
                 android:background="@drawable/rounded"
-                android:layout_weight="0.01">
+                android:layout_weight="1">
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -238,7 +259,7 @@
                 android:id="@+id/by"
                 android:layout_gravity="top"
                 android:background="@drawable/rounded"
-                android:layout_weight="0.01">
+                android:layout_weight="0.4">
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">

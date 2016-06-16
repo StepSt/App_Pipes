@@ -31,6 +31,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 
 import admin.example.com.pipes_v2.BoxAdapter;
+import admin.example.com.pipes_v2.Main;
 import admin.example.com.pipes_v2.Product;
 import admin.example.com.pipes_v2.R;
 
@@ -42,7 +43,16 @@ import admin.example.com.pipes_v2.R;
  * Use the {@link FragmentBuy#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentBuy extends Fragment {
+public class FragmentBuy extends Fragment implements Main.OnBackPressedListener
+{
+    FragmentStart start;
+    @Override
+    public void onBackPressed() {
+        start= new FragmentStart();
+        FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
+        transaction_start.replace(R.id.container,start).commit();
+        getActivity().setTitle(R.string.menu_calk);
+    }
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -133,6 +143,7 @@ public class FragmentBuy extends Fragment {
                 }else editText_delivery.setVisibility(View.INVISIBLE);
             }
         });
+        //region Clear_Button
         LinearLayout clear = (LinearLayout) v.findViewById(R.id.clear);
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,6 +151,8 @@ public class FragmentBuy extends Fragment {
                 Log.d("Log>","clear");
             }
         });
+        //endregion
+        //region Sent_Button
         LinearLayout sent = (LinearLayout) v.findViewById(R.id.sent);
         sent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -160,18 +173,24 @@ public class FragmentBuy extends Fragment {
                     + "Телефон заказчика: " + mSettings.getString("User_numphome","") + "\n";
                     Intent email = new Intent(Intent.ACTION_SEND);
                     email.putExtra(Intent.EXTRA_EMAIL, new String[]{"legionst@gmail.com"});
-                    email.putExtra(Intent.EXTRA_SUBJECT, "subject");
+                    email.putExtra(Intent.EXTRA_SUBJECT, "Заказ от " + hasIDuser + " " + mSettings.getString("User_numphome",""));
                     for (Product p : boxAdapter.getBox()) {
                         if (p.box)
-                            if (p.S.length() == 0)
-                            {
-                                message_string += "- Тип: " + p.type_pipes + " Диаметр наружный: " + p.D + " Длинна: " + p.L + " Масса: " + p.M + "\n";
+                            switch (p.type_pipes){
+                                case "Труба БУ":
+                                case "Труба восстановленная":
+                                case "Труба НКТ":
+                                    message_string += "- Тип: " + p.type_pipes + " Диаметр наружный: " + p.D + " Диаметр внутренний: " + p.S + " Длинна: " + p.L + " Масса: " + p.M + "\n";
+                                    break;
+                                case "Штанга":
+                                    message_string += "- Тип: " + p.type_pipes + " Диаметр наружный: " + p.D + " Длинна: " + p.L + " Масса: " + p.M + "\n";
+                                    break;
+                                case "Труба профильная":
+                                    message_string += "- Тип: " + p.type_pipes + " Сторона А: " + p.D + " Сторона B: " + p.S + " Длинна: " + p.L + " Масса: " + p.M + "\n";
+                                    break;
+                                case "Лист профильный":
+                                    message_string += "- Тип: " + p.type_pipes + " Длинна: " + p.L + " Масса: " + p.M + "\n";
                             }
-                            else
-                            {
-                                message_string += "- Тип: " + p.type_pipes + " Диаметр наружный: " + p.D + " Диаметр внутренний: " + p.S + " Длинна: " + p.L + " Масса: " + p.M + "\n";
-                            }
-
                     }
                     if (checkBox_delivery.isChecked()) {
                         message_string += "\n" + "Доставка по адресу: " + editText_delivery.getText().toString();
@@ -188,7 +207,7 @@ public class FragmentBuy extends Fragment {
 
             }
         });
-
+//endregion
         //endregion
         int count = Integer.parseInt(mSettings.getString(APP_PREFERENCES_COUNT, ""));
         int i = 1;
