@@ -114,13 +114,14 @@ public class FragmentCalcSheet extends Fragment implements Main.OnBackPressedLis
 
             @Override
             public void afterTextChanged(Editable s) {
+                txt_L.setText(edit_L.getText().toString());
                 if (edit_L.getText().toString().length() != 0){
-                    txt_L.setText(" L = " + edit_L.getText().toString());
+
                     if(edit_L.getText().length() != 0){
                         Double res_pM = 4.455*Double.parseDouble(edit_L.getText().toString());
-                        txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                        txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
                     }
-                }
+                }else txt_M.setText("***");
             }
         });
         /**
@@ -176,7 +177,7 @@ public class FragmentCalcSheet extends Fragment implements Main.OnBackPressedLis
                     SharedPreferences.Editor editor = mSettings.edit();
                     editor.putString(APP_PREFERENCES_COUNT, Integer.toString(count));
 
-                    Product product = new Product(txt_pipes.getText().toString(),txt_L.getText().toString(),"","",txt_M.getText().toString(), true);
+                    Product product = new Product(txt_pipes.getText().toString(),"L = " + txt_L.getText().toString(),"","","M = " + txt_M.getText().toString(), true);
                     switch (count){
                         case 1 :
                             editor.putString(APP_PREFERENCES_NABOR1,writeUsingNormalOperation(product));

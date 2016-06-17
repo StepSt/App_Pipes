@@ -53,7 +53,8 @@
             android:orientation="vertical"
             android:layout_weight="1"
             android:layout_marginTop="60dp"
-            android:id="@+id/one">
+            android:id="@+id/one"
+            android:layout_marginBottom="50dp">
             <ListView
                 android:id="@+id/lvMain"
                 android:layout_width="wrap_content"
@@ -66,7 +67,17 @@
                 android:layout_height="wrap_content"
                 android:text="Доставка"
                 android:id="@+id/checkBox_delivery" />
-
+            <admin.example.com.pipes_v2.TextViewPlus
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Введите адрес доставки"
+                android:id="@+id/txt_addressDelivery"
+                foo:customFont="GOST type A.ttf"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:gravity="center_vertical|center"
+                android:clickable="true"
+                android:visibility="invisible" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -134,8 +145,7 @@
                 android:id="@+id/sent"
                 android:layout_gravity="top"
                 android:background="@drawable/rounded"
-                android:layout_weight="1
-                "
+                android:layout_weight="1"
                 android:clickable="true">
                 <ImageView
                     android:layout_width="match_parent"

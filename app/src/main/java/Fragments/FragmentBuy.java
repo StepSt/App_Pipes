@@ -1,12 +1,14 @@
 package Fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.text.Layout;
 import android.text.TextUtils;
 import android.util.Log;
@@ -80,7 +82,7 @@ public class FragmentBuy extends Fragment implements Main.OnBackPressedListener
     public static final String APP_PREFERENCES_NABOR10 = "nabor10"; //
     public static  final String APP_PREFERENCES_COUNT = "Count"; // cчетчик
     SharedPreferences mSettings;
-
+    AlertDialog.Builder ad;
     private OnFragmentInteractionListener mListener;
 
     FragmentCalc calc;
@@ -133,6 +135,7 @@ public class FragmentBuy extends Fragment implements Main.OnBackPressedListener
         //region Sent
 
         final EditText editText_delivery = (EditText) v.findViewById(R.id.editText_delivery);
+        final TextView txt_adressDelivery = (TextView) v.findViewById(R.id.txt_addressDelivery);
         final CheckBox checkBox_delivery = (CheckBox) v.findViewById(R.id.checkBox_delivery);
         checkBox_delivery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,15 +143,54 @@ public class FragmentBuy extends Fragment implements Main.OnBackPressedListener
                 if (checkBox_delivery.isChecked())
                 {
                     editText_delivery.setVisibility(View.VISIBLE);
-                }else editText_delivery.setVisibility(View.INVISIBLE);
+                    txt_adressDelivery.setVisibility(View.VISIBLE);
+                }else{
+                    editText_delivery.setVisibility(View.INVISIBLE);
+                    txt_adressDelivery.setVisibility(View.INVISIBLE);
+                }
             }
         });
         //region Clear_Button
+        //region Window
+        String title = "Запрос";
+        String message = "Вы уверены";
+        String button1String = "Нет";
+        String button2String = "Да";
+        ad = new AlertDialog.Builder(getContext());
+        ad.setTitle(title);  // заголовок
+        ad.setMessage(message); // сообщение
+ad.setPositiveButton(button1String, new DialogInterface.OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        Toast toast = Toast.makeText(getActivity(),
+                "OK ", Toast.LENGTH_SHORT);
+        toast.show();
+    }
+});
+        ad.setNegativeButton(button2String, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                SharedPreferences.Editor editor = mSettings.edit();
+                editor.putString(APP_PREFERENCES_COUNT, "0");
+                editor.apply();
+                start= new FragmentStart();
+                FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
+                transaction_start.replace(R.id.container,start).commit();
+            }
+        });
+
+        //endrion
         LinearLayout clear = (LinearLayout) v.findViewById(R.id.clear);
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Log>","clear");
+                //SharedPreferences.Editor editor = mSettings.edit();
+                //editor.putString(APP_PREFERENCES_COUNT, "0");
+                //editor.apply();
+                //start= new FragmentStart();
+                //FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
+                //transaction_start.replace(R.id.container,start).commit();
+                ad.show();
             }
         });
         //endregion
@@ -160,6 +202,7 @@ public class FragmentBuy extends Fragment implements Main.OnBackPressedListener
                 // проверяем, первый ли раз открывается программа
                 SharedPreferences.Editor editor = mSettings.edit();
                 String hasIDuser = mSettings.getString("User_name", "");
+                //hasIDuser = "Сергей";
 
                 if (hasIDuser == "") {
                     // выводим нужную активность
@@ -202,9 +245,12 @@ public class FragmentBuy extends Fragment implements Main.OnBackPressedListener
                     startActivity(Intent.createChooser(email, "Выберите email клиент :"));
                     editor.putString(APP_PREFERENCES_COUNT, "0");
                     editor.apply();
+
                     //endregion
                 }
-
+                //start = new FragmentStart();
+                //FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
+                //transaction_start.replace(R.id.container,start).commit();
             }
         });
 //endregion
@@ -249,7 +295,7 @@ public class FragmentBuy extends Fragment implements Main.OnBackPressedListener
         lvMain.setAdapter(boxAdapter);
         txt_count.setText(boxAdapter.getCount() + "");
 
-//regionn Button_order
+//region Button_order
         Button button_order = (Button) v.findViewById(R.id.button_order);
         button_order.setOnClickListener(new View.OnClickListener() {
             @Override

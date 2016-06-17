@@ -123,15 +123,15 @@ public void onBackPressed() {
 
             @Override
             public void afterTextChanged(Editable s) {
+                txt_A.setText(edit_A.getText().toString());
                 if (edit_A.getText().toString().length() != 0){
-                    txt_A.setText(" А = " + edit_A.getText().toString());
                     if(edit_B.getText().length() != 0 && edit_S.getText().length() != 0 && edit_L.getText().length() != 0){
                         Double res_pM = 0.0157 * Double.parseDouble(edit_S.getText().toString())*(Double.parseDouble(edit_A.getText().toString()) +
                                 Double.parseDouble(edit_B.getText().toString()) - 2.86 * Double.parseDouble(edit_S.getText().toString()))
                                 *Double.parseDouble(edit_L.getText().toString());
-                        txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                        txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
                     }
-                }
+                }else txt_M.setText("***");
             }
         });
         edit_B.addTextChangedListener(new TextWatcher() {
@@ -147,15 +147,16 @@ public void onBackPressed() {
 
             @Override
             public void afterTextChanged(Editable s) {
+                txt_B.setText(edit_B.getText().toString());
                 if (edit_B.getText().toString().length() != 0){
-                    txt_B.setText(" B = " + edit_B.getText().toString());
+
                     if(edit_A.getText().length() != 0 && edit_S.getText().length() != 0 && edit_L.getText().length() != 0){
                         Double res_pM = 0.0157 * Double.parseDouble(edit_S.getText().toString())*(Double.parseDouble(edit_A.getText().toString()) +
                                 Double.parseDouble(edit_B.getText().toString()) - 2.86 * Double.parseDouble(edit_S.getText().toString()))
                                 *Double.parseDouble(edit_L.getText().toString());
-                        txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                        txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
                     }
-                }
+                }else txt_M.setText("***");
             }
         });
         edit_S.addTextChangedListener(new TextWatcher() {
@@ -171,15 +172,16 @@ public void onBackPressed() {
 
             @Override
             public void afterTextChanged(Editable s) {
+                txt_S.setText(edit_S.getText().toString());
                 if (edit_S.getText().toString().length() != 0){
-                    txt_S.setText(" S = " + edit_S.getText().toString());
+
                     if(edit_B.getText().length() != 0 && edit_A.getText().length() != 0 && edit_L.getText().length() != 0){
                         Double res_pM = 0.0157 * Double.parseDouble(edit_S.getText().toString())*(Double.parseDouble(edit_A.getText().toString()) +
                                 Double.parseDouble(edit_B.getText().toString()) - 2.86 * Double.parseDouble(edit_S.getText().toString()))
                                 *Double.parseDouble(edit_L.getText().toString());
-                        txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                        txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
                     }
-                }
+                }else txt_M.setText("***");
             }
         });
         edit_L.addTextChangedListener(new TextWatcher() {
@@ -195,15 +197,16 @@ public void onBackPressed() {
 
             @Override
             public void afterTextChanged(Editable s) {
+                txt_L.setText(edit_L.getText().toString());
                 if (edit_L.getText().toString().length() != 0){
-                    txt_L.setText(" L = " + edit_L.getText().toString());
+
                     if(edit_A.getText().length() != 0 && edit_S.getText().length() != 0 && edit_B.getText().length() != 0){
                         Double res_pM = 0.0157 * Double.parseDouble(edit_S.getText().toString())*(Double.parseDouble(edit_A.getText().toString()) +
                                 Double.parseDouble(edit_B.getText().toString()) - 2.86 * Double.parseDouble(edit_S.getText().toString()))
                                 *Double.parseDouble(edit_L.getText().toString());
-                        txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                        txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
                     }
-                }
+                }else txt_M.setText("***");
             }
         });
         /**
@@ -302,7 +305,7 @@ public void onBackPressed() {
             @Override
             public void onClick(View v) {
                 Animation animation = null;
-                if(edit_A.getText().toString().length() == 0 && edit_B.getText().toString().length() == 0 && edit_S.getText().toString().length() == 0 && edit_L.getText().toString().length() == 0)
+                if(edit_A.getText().toString().length() == 0 || edit_B.getText().toString().length() == 0  || edit_S.getText().toString().length() == 0  || edit_L.getText().toString().length() == 0)
                 {
                     Toast toast = Toast.makeText(getActivity(),
                             "Введите параметры для расчета", Toast.LENGTH_SHORT);
@@ -316,7 +319,7 @@ public void onBackPressed() {
                     SharedPreferences.Editor editor = mSettings.edit();
                     editor.putString(APP_PREFERENCES_COUNT, Integer.toString(count));
 
-                    Product product = new Product(txt_pipes.getText().toString(),txt_L.getText().toString(),txt_A.getText().toString(),txt_B.getText().toString(),txt_M.getText().toString(), true);
+                    Product product = new Product(txt_pipes.getText().toString(),"L = " + txt_L.getText().toString(),"A = " + txt_A.getText().toString(),"B = " + txt_B.getText().toString(),"M = " + txt_M.getText().toString(), true);
                     switch (count){
                         case 1 :
                             editor.putString(APP_PREFERENCES_NABOR1,writeUsingNormalOperation(product));

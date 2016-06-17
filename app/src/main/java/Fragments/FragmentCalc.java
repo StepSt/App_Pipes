@@ -220,13 +220,14 @@ private static final int REQUEST_WEIGHT = 1;
 
             @Override
             public void afterTextChanged(Editable s) {
+                txt_D.setText(edit_D.getText().toString());
                 if (edit_D.getText().toString().length() != 0){
-                    txt_D.setText(" D = " + edit_D.getText().toString());
+
                     if(edit_S.getText().length() != 0 && edit_L.getText().length() != 0){
                         Double res_pM = ((Double.parseDouble(edit_D.getText().toString()) - Double.parseDouble(edit_S.getText().toString()))*Double.parseDouble(edit_S.getText().toString()))/40.55;
-                        txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                        txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
                     }
-                }
+                }else txt_M.setText("***");
             }
         });
         edit_S.addTextChangedListener(new TextWatcher() {
@@ -242,11 +243,12 @@ private static final int REQUEST_WEIGHT = 1;
 
             @Override
             public void afterTextChanged(Editable s) {
+                txt_S.setText(edit_S.getText().toString());
                 if (edit_S.getText().toString().length() != 0){
-                    txt_S.setText(" S = " + edit_S.getText().toString());
+
                     if(edit_D.getText().length() != 0 && edit_L.getText().length() != 0){
                         Double res_pM = ((Double.parseDouble(edit_D.getText().toString()) - Double.parseDouble(edit_S.getText().toString()))*Double.parseDouble(edit_S.getText().toString()))/40.55;
-                        txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                        txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
                     }
                 }
             }
@@ -264,13 +266,14 @@ private static final int REQUEST_WEIGHT = 1;
 
             @Override
             public void afterTextChanged(Editable s) {
+                txt_L.setText(edit_L.getText().toString());
                 if (edit_L.getText().toString().length() != 0){
-                    txt_L.setText(" L = " + edit_L.getText().toString());
+
                     if(edit_D.getText().length() != 0 && edit_S.getText().length() != 0){
                         Double res_pM = ((Double.parseDouble(edit_D.getText().toString()) - Double.parseDouble(edit_S.getText().toString()))*Double.parseDouble(edit_S.getText().toString()))/40.55;
                         txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
                     }
-                }
+                }else txt_M.setText("***");
             }
         });
 /**
@@ -335,7 +338,7 @@ private static final int REQUEST_WEIGHT = 1;
             @Override
             public void onClick(View v) {
                 Animation animation = null;
-                if(edit_D.getText().toString().length() == 0 && edit_S.getText().toString().length() == 0 && edit_L.getText().toString().length() == 0)
+                if(edit_D.getText().toString().length() == 0 || edit_S.getText().toString().length() == 0 || edit_L.getText().toString().length() == 0)
                 {
                     Toast toast = Toast.makeText(getActivity(),
                             "Введите параметры для расчета", Toast.LENGTH_SHORT);
@@ -349,7 +352,7 @@ private static final int REQUEST_WEIGHT = 1;
                             txt_c.setText(Integer.toString(count));
                             SharedPreferences.Editor editor = mSettings.edit();
                             editor.putString(APP_PREFERENCES_COUNT, Integer.toString(count));
-                            Product product = new Product(txt_pipes.getText().toString(),txt_L.getText().toString(),txt_D.getText().toString(),txt_S.getText().toString(),txt_M.getText().toString(), true);
+                            Product product = new Product(txt_pipes.getText().toString(),"L = " + txt_L.getText().toString(),"D = " + txt_D.getText().toString(),"S = " + txt_S.getText().toString(),"M = " + txt_M.getText().toString(), true);
                             switch (count){
                                 case 1 :
                                     editor.putString(APP_PREFERENCES_NABOR1,writeUsingNormalOperation(product));
