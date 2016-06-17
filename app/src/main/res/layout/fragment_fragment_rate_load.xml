@@ -745,7 +745,8 @@
                     android:background="@drawable/rounded"
                     foo:customFont="GOST type A.ttf"
                     android:textSize="25dp"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:linksClickable="true" />
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
