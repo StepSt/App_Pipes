@@ -1,0 +1,38 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Fragments.FragmentCalc"
+    android:background="@drawable/grid"
+    xmlns:foo="http://schemas.android.com/apk/res-auto">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top|left|bottom|right"
+        android:background="@drawable/rounded"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp">
+
+    <ListView
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="5dp"
+        android:id="@id/android:list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+        <ListView
+            android:layout_marginTop="170dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/list1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        </ListView>
+
+    </FrameLayout>
+</FrameLayout>

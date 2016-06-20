@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">СтройРезерв</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Настройки</string>
+    <string name="menu_cite">ufatruba.ru</string>
+    <string name="menu_calk">Расчет</string>
+    <string name="menu_rate_load">Нормы провоза автомобильным транспортом</string>
+    <string name="menu_about">О нас</string>
+    <string name="menu_call">Позвонить</string>
+    <string name="menu_price">Наши цены</string>
+
+    <string name="menu_developer">Разработчики</string>
+    <string name="name_developer">АСУиСБ</string>
+    <string name="title_activity_price">price</string>
+
+    <string-array name="type_pipes">
+        <item>Труба круглая</item>
+        <item>Труба профильная</item>
+    </string-array>
+
+    <string-array name="type_pipes_menu">
+        <item>Труба БУ</item>
+        <item>Труба восстановленная</item>
+        <item>Труба НКТ</item>
+    </string-array>
+
+    <string name="tel">tel:+79173763215</string>
+
+    <string name="number_list">Ассортимент</string>
+    <string name="number_list_2">А также:</string>
+
+    <string name="box">Корзина</string>
+    <string name="calk_title">Введите параметры расчета</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

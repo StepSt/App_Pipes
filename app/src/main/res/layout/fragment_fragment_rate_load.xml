@@ -1,0 +1,753 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Fragments.FragmentCalc"
+    android:background="@drawable/grid"
+    xmlns:foo="http://schemas.android.com/apk/res-auto">
+
+    <!-- TODO: Update blank fragment layout -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top|left|bottom|right"
+        android:background="@drawable/rounded"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        <admin.example.com.pipes_v2.TextViewPlus
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Нормы загрузки в автотранспорт"
+            android:id="@+id/txt_pipes"
+            android:inputType="text"
+            android:textAlignment="center"
+            android:background="@drawable/rounded"
+            foo:customFont="GOST type A.ttf"
+            android:textSize="25dp"
+            android:textColor="@color/white"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <admin.example.com.pipes_v2.TextViewPlus
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Диаметр, мм"
+                android:id="@+id/txt11"
+                android:inputType="text"
+                android:textAlignment="center"
+                android:background="@drawable/rounded"
+                foo:customFont="GOST type A.ttf"
+                android:textSize="25dp"
+                android:textColor="@color/white"/>
+            <admin.example.com.pipes_v2.TextViewPlus
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Без коников"
+                android:id="@+id/txt12"
+                android:inputType="text"
+                android:textAlignment="center"
+                android:background="@drawable/rounded"
+                foo:customFont="GOST type A.ttf"
+                android:textSize="25dp"
+                android:textColor="@color/white" />
+            <admin.example.com.pipes_v2.TextViewPlus
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="С кониками"
+                android:id="@+id/txt13"
+                android:inputType="text"
+                android:textAlignment="center"
+                android:background="@drawable/rounded"
+                foo:customFont="GOST type A.ttf"
+                android:textSize="25dp"
+                android:textColor="@color/white" />
+        </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="63"
+                    android:id="@+id/txt21"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="20 ТОН."
+                    android:id="@+id/txt22"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="20 ТОН."
+                    android:id="@+id/txt23"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="73"
+                    android:id="@+id/txt31"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="20 ТОН."
+                    android:id="@+id/txt32"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="20 ТОН."
+                    android:id="@+id/txt33"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="114"
+                    android:id="@+id/txt41"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="20 ТОН."
+                    android:id="@+id/txt42"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="20 ТОН."
+                    android:id="@+id/txt43"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="159"
+                    android:id="@+id/txt51"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="20 ТОН."
+                    android:id="@+id/txt52"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="20 ТОН."
+                    android:id="@+id/txt53"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="168"
+                    android:id="@+id/txt61"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="20 ТОН."
+                    android:id="@+id/txt62"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="20 ТОН."
+                    android:id="@+id/txt63"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="219"
+                    android:id="@+id/txt71"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="45 ШТ."
+                    android:id="@+id/txt72"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="65 ШТ."
+                    android:id="@+id/txt73"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="273"
+                    android:id="@+id/txt81"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="36 ШТ."
+                    android:id="@+id/txt82"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="66 ШТ."
+                    android:id="@+id/txt83"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="300"
+                    android:id="@+id/txt91"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="32 ШТ."
+                    android:id="@+id/txt92"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="43 ШТ."
+                    android:id="@+id/txt93"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="325"
+                    android:id="@+id/txt101"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="28 ШТ."
+                    android:id="@+id/txt102"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="39 ШТ."
+                    android:id="@+id/txt103"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="377"
+                    android:id="@+id/txt111"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="21 ШТ."
+                    android:id="@+id/txt112"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="39 ШТ."
+                    android:id="@+id/txt113"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="426"
+                    android:id="@+id/txt121"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="15 ШТ."
+                    android:id="@+id/txt122"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="22 ШТ."
+                    android:id="@+id/txt123"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="530"
+                    android:id="@+id/txt131"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="10 ШТ."
+                    android:id="@+id/txt132"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="15 ШТ."
+                    android:id="@+id/txt133"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="720"
+                    android:id="@+id/txt141"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="8 ШТ."
+                    android:id="@+id/txt142"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="8 ШТ."
+                    android:id="@+id/txt143"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="820"
+                    android:id="@+id/txt151"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="6 ШТ."
+                    android:id="@+id/txt152"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="8 ШТ."
+                    android:id="@+id/txt153"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="1220"
+                    android:id="@+id/txt161"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="3 ШТ."
+                    android:id="@+id/txt162"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="4 ШТ."
+                    android:id="@+id/txt163"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="1420"
+                    android:id="@+id/txt171"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="1 ШТ."
+                    android:id="@+id/txt172"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white" />
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="2 ШТ."
+                    android:id="@+id/txt173"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    android:background="@drawable/rounded"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="25dp"
+                    android:textColor="@color/white"
+                    android:linksClickable="true" />
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>

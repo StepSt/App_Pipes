@@ -1,0 +1,183 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Fragments.FragmentCalc"
+    android:background="@drawable/grid"
+    xmlns:foo="http://schemas.android.com/apk/res-auto">
+
+    <!-- TODO: Update blank fragment layout -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top|left|bottom|right"
+        android:background="@drawable/rounded"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <admin.example.com.pipes_v2.TextViewPlus
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Введите личные данные"
+                android:id="@+id/textView19"
+                android:layout_gravity="left|top"
+                foo:customFont="GOST type A.ttf"
+                android:textSize="30dp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <admin.example.com.pipes_v2.TextViewPlus
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Имя*:"
+                android:id="@+id/txt_name"
+                foo:customFont="GOST type A.ttf"
+                android:textSize="20dp"
+                android:textColor="@color/white"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_name"
+                android:textColor="@color/yellow"
+                android:inputType="text"
+                android:textSize="25dp"
+                android:textAlignment="textEnd" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <admin.example.com.pipes_v2.TextViewPlus
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Фамилия:"
+                android:id="@+id/txt_sname"
+                foo:customFont="GOST type A.ttf"
+                android:textSize="20dp"
+                android:textColor="@color/white"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_sname"
+                android:textColor="@color/yellow"
+                android:inputType="text"
+                android:textSize="25dp"
+                android:textAlignment="textEnd" />
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Отчество:"
+                    android:id="@+id/txt_trnmae"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="20dp"
+                    android:textColor="@color/white"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edit_trname"
+                    android:textColor="@color/yellow"
+                    android:inputType="text"
+                    android:textSize="25dp"
+                    android:textAlignment="textEnd" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Телефон*:"
+                    android:id="@+id/txt_numphome"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="20dp"
+                    android:textColor="@color/white"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edit_numphone"
+                    android:textColor="@color/yellow"
+                    android:inputType="phone"
+                    android:textSize="25dp"
+                    android:textAlignment="textEnd" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Поля, помеченные звездочкой (*) обязательны для заполнения"
+                    android:id="@+id/textView20"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="15dp"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tree"
+            android:layout_gravity="bottom"
+            android:layout_weight="1">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.01"
+                android:id="@+id/imageView3"
+                android:layout_gravity="left|bottom"
+                android:src="@mipmap/logo_menu"
+                android:background="@drawable/rounded"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/save"
+                android:layout_gravity="top"
+                android:background="@drawable/rounded"
+                android:layout_weight="0.01">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/icon_by"
+                    android:src="@drawable/ic_save_white_48px"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="Сохранить"
+                    android:id="@+id/textView17"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="20dp"
+                    android:textColor="@color/white"
+                    android:gravity="center_vertical|center"
+                    android:layout_gravity="bottom|right"
+                    android:clickable="true"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </FrameLayout>
+</FrameLayout>
