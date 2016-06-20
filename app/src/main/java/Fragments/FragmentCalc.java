@@ -433,12 +433,6 @@ private static final int REQUEST_WEIGHT = 1;
         return String.format(format,product.type_pipes, product.L, product.D, product.S, product.M, product.box + "");
     }
     // TODO: Rename method, update argument and hook method into UI event
-    /**
-        public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-        */
     public static void hideSoftKeyboard(Activity activity) {
         InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
