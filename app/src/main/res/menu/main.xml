@@ -7,7 +7,7 @@
         android:id="@+id/action_call"
         android:orderInCategory="2"
         android:title="@string/action_settings"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom"/>
     <!--
     <item
         android:icon="@drawable/ic_language_white_48px"

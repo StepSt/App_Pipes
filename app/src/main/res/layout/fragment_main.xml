@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="top|left|bottom|right"
-        android:background="@drawable/rounded"
+        android:background="@drawable/rounded_yelow"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
@@ -33,6 +33,16 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
         </ListView>
+
+        <ImageView
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:id="@+id/logo"
+            android:src="@mipmap/logo_menu"
+            android:layout_gravity="left|bottom"
+            android:layout_marginBottom="1dp"
+            android:layout_marginLeft="1dp"
+            android:background="@drawable/rounded_yelow"/>
 
     </FrameLayout>
 </FrameLayout>

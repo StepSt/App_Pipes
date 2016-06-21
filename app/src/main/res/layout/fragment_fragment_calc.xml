@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="top|left|bottom|right"
-        android:background="@drawable/rounded"
+        android:background="@drawable/rounded_yelow"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
@@ -28,23 +28,23 @@
             android:id="@+id/shapka"
             android:layout_gravity="top"
             android:layout_marginBottom="300dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/calc_title_l"
-            android:layout_gravity="top"
-            android:layout_marginTop="20dp">
-            <admin.example.com.pipes_v2.TextViewPlus
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/calk_title"
-                android:id="@+id/calc_title"
-                android:textColor="@color/white"
-                android:textSize="25dp"
-                foo:customFont="GOST type A.ttf"
-                android:layout_gravity="center_horizontal" />
-        </LinearLayout>
+                android:orientation="vertical"
+                android:id="@+id/calc_title_l"
+                android:layout_gravity="top"
+                android:layout_marginTop="20dp">
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/calk_title"
+                    android:id="@+id/calc_title"
+                    android:textColor="@color/white"
+                    android:textSize="25dp"
+                    foo:customFont="GOST type A.ttf"
+                    android:layout_gravity="center_horizontal" />
+            </LinearLayout>
 
             <FrameLayout
                 android:layout_width="wrap_content"
@@ -254,33 +254,33 @@
                     android:layout_gravity="bottom|right"
                     android:clickable="true"/>
             </LinearLayout>
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:id="@+id/add"
-            android:layout_gravity="top"
-            android:background="@drawable/rounded"
-            android:layout_weight="1"
-            android:clickable="true">
-            <ImageView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/add"
+                android:layout_gravity="top"
+                android:background="@drawable/rounded"
                 android:layout_weight="1"
-                android:id="@+id/icon_add"
-                android:src="@drawable/ic_add_shopping_cart_white_48px"/>
-            <admin.example.com.pipes_v2.TextViewPlus
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:text="Добавить"
-                android:id="@+id/textView13"
-                foo:customFont="GOST type A.ttf"
-                android:textSize="20dp"
-                android:textColor="@color/white"
-                android:gravity="center_vertical|center"
-                android:layout_gravity="bottom|right"
-                android:clickable="true"/>
+                android:clickable="true">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/icon_add"
+                    android:src="@drawable/ic_add_shopping_cart_white_48px"/>
+                <admin.example.com.pipes_v2.TextViewPlus
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:text="Добавить"
+                    android:id="@+id/textView13"
+                    foo:customFont="GOST type A.ttf"
+                    android:textSize="20dp"
+                    android:textColor="@color/white"
+                    android:gravity="center_vertical|center"
+                    android:layout_gravity="bottom|right"
+                    android:clickable="true"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -291,47 +291,47 @@
                 android:background="@drawable/rounded"
                 android:layout_weight="0.4"
                 android:clickable="true">
-               <FrameLayout
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-                   <LinearLayout
-                       android:layout_width="match_parent"
-                       android:layout_height="match_parent"
-                       android:orientation="vertical"
-                       android:layout_gravity="top">
-                       <ImageView
-                           android:layout_width="match_parent"
-                           android:layout_height="match_parent"
-                           android:layout_weight="1"
-                           android:id="@+id/icon_by"
-                           android:src="@drawable/ic_shopping_cart_white_48px"/>
-                       <admin.example.com.pipes_v2.TextViewPlus
-                           android:layout_height="match_parent"
-                           android:layout_width="match_parent"
-                           android:layout_weight="1"
-                           android:text="Заказать"
-                           android:id="@+id/textView17"
-                           foo:customFont="GOST type A.ttf"
-                           android:textSize="20dp"
-                           android:textColor="@color/white"
-                           android:gravity="center_vertical|center"
-                           android:layout_gravity="bottom|right"
-                           android:clickable="true"/>
-                   </LinearLayout>
-                   <admin.example.com.pipes_v2.TextViewPlus
-                       android:layout_width="20dp"
-                       android:layout_height="wrap_content"
-                       android:layout_weight="1"
-                       android:text="0"
-                       android:id="@+id/txt_count"
-                       android:inputType="number"
-                       android:textAlignment="center"
-                       android:background="@drawable/rounded_cicle"
-                       foo:customFont="GOST type A.ttf"
-                       android:textSize="20dp"
-                       android:textColor="@color/white"
-                       android:layout_marginLeft="70dp" />
-               </FrameLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_gravity="top">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:id="@+id/icon_by"
+                            android:src="@drawable/ic_shopping_cart_white_48px"/>
+                        <admin.example.com.pipes_v2.TextViewPlus
+                            android:layout_height="match_parent"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+                            android:text="Заказать"
+                            android:id="@+id/textView17"
+                            foo:customFont="GOST type A.ttf"
+                            android:textSize="20dp"
+                            android:textColor="@color/white"
+                            android:gravity="center_vertical|center"
+                            android:layout_gravity="bottom|right"
+                            android:clickable="true"/>
+                    </LinearLayout>
+                    <admin.example.com.pipes_v2.TextViewPlus
+                        android:layout_width="20dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:id="@+id/txt_count"
+                        android:inputType="number"
+                        android:textAlignment="center"
+                        android:background="@drawable/rounded_cicle"
+                        foo:customFont="GOST type A.ttf"
+                        android:textSize="20dp"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="70dp" />
+                </FrameLayout>
             </LinearLayout>
 
         </LinearLayout>
@@ -344,15 +344,15 @@
             android:id="@+id/calc"
             android:layout_weight="1"
             android:layout_marginBottom="48dp">
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_weight="1">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_weight="1">
 
 
-        </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:orientation="vertical"
@@ -498,6 +498,9 @@
             </LinearLayout>
         </LinearLayout>
 
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rounded_yelow"></LinearLayout>
     </FrameLayout>
 </FrameLayout>

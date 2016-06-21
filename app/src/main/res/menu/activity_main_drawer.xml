@@ -5,7 +5,7 @@
         <item
             android:id="@+id/nav_calk"
             android:icon="@drawable/ic_exposure_white_48px"
-            android:title="@string/menu_calk" />
+            android:title="@string/menu_calk"/>
         <item
             android:id="@+id/nav_RateLoad"
             android:icon="@drawable/ic_directions_car_white_48px"
