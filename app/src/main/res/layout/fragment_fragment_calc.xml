@@ -401,7 +401,7 @@
                         android:background="@drawable/rounded"
                         foo:customFont="GOST type A.ttf"
                         android:textSize="25dp"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/yellow" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="horizontal"
@@ -431,7 +431,7 @@
                         android:background="@drawable/rounded"
                         foo:customFont="GOST type A.ttf"
                         android:textSize="25dp"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/yellow" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="horizontal"
@@ -461,7 +461,7 @@
                         android:background="@drawable/rounded"
                         foo:customFont="GOST type A.ttf"
                         android:textSize="25dp"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/yellow" />
                 </LinearLayout>
                 <LinearLayout
                     android:orientation="horizontal"
@@ -492,7 +492,7 @@
                         android:background="@drawable/rounded"
                         foo:customFont="GOST type A.ttf"
                         android:textSize="25dp"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/yellow" />
                 </LinearLayout>
 
             </LinearLayout>

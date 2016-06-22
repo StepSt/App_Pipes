@@ -109,9 +109,8 @@ public class FragmentCalc extends Fragment implements Main.OnBackPressedListener
     TextView txt_c;
     TextView txt_D;
     EditText edit_D;
-
     public ArrayList<Product> products = new ArrayList<Product>();
-
+    boolean flag_add_one;
     //private OnFragmentInteractionListener mListener;
 
 
@@ -123,9 +122,7 @@ private static final int REQUEST_WEIGHT = 1;
         Log.d("Log","openWeightPicker");
         Dialog_pipes_by fragment = new Dialog_pipes_by();
         fragment.setTargetFragment(this, REQUEST_WEIGHT);
-
         fragment.setArguments(bundle1);
-
         fragment.show(getFragmentManager(), fragment.getClass().getName());
     }
 
@@ -137,19 +134,17 @@ private static final int REQUEST_WEIGHT = 1;
                 case REQUEST_WEIGHT:
                     int weight = data.getIntExtra(Dialog_pipes_by.TAG_WEIGHT_SELECTED, -1);
                     //используем полученные результаты
-
                     edit_D.setText(weight + "");
-                    //txt_D.setText(weight + "");
 
-                    txt_D.setText(" D = " + weight + "");
+                    txt_D.setText(weight + "");
 
-                    //...
                     break;
                 case REQUEST_ANOTHER_ONE:
                     //...
                     break;
                 //обработка других requestCode
             }
+
             //updateUI();
         }
     }
@@ -205,7 +200,7 @@ private static final int REQUEST_WEIGHT = 1;
         txt_D = (TextView) v.findViewById(R.id.txt_D);
         final TextView txt_S = (TextView) v.findViewById(R.id.txt_S);
         final TextView txt_L = (TextView) v.findViewById(R.id.txt_L);
-
+        final LinearLayout layout_add = (LinearLayout) v.findViewById(R.id.add);
 //region Edit
         edit_D.addTextChangedListener(new TextWatcher() {
             @Override
@@ -224,7 +219,7 @@ private static final int REQUEST_WEIGHT = 1;
                 if (edit_D.getText().toString().length() != 0){
 
                     if(edit_S.getText().length() != 0 && edit_L.getText().length() != 0){
-                        Double res_pM = ((Double.parseDouble(edit_D.getText().toString()) - Double.parseDouble(edit_S.getText().toString()))*Double.parseDouble(edit_S.getText().toString()))/40.55;
+                        Double res_pM = (((Double.parseDouble(edit_D.getText().toString()) - Double.parseDouble(edit_S.getText().toString()))*Double.parseDouble(edit_S.getText().toString()))/40.55)*Double.parseDouble(edit_L.getText().toString());
                         txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
                     }
                 }else txt_M.setText("***");
@@ -247,7 +242,7 @@ private static final int REQUEST_WEIGHT = 1;
                 if (edit_S.getText().toString().length() != 0){
 
                     if(edit_D.getText().length() != 0 && edit_L.getText().length() != 0){
-                        Double res_pM = ((Double.parseDouble(edit_D.getText().toString()) - Double.parseDouble(edit_S.getText().toString()))*Double.parseDouble(edit_S.getText().toString()))/40.55;
+                        Double res_pM = (((Double.parseDouble(edit_D.getText().toString()) - Double.parseDouble(edit_S.getText().toString()))*Double.parseDouble(edit_S.getText().toString()))/40.55)*Double.parseDouble(edit_L.getText().toString());
                         txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
                     }
                 }
@@ -270,8 +265,8 @@ private static final int REQUEST_WEIGHT = 1;
                 if (edit_L.getText().toString().length() != 0){
 
                     if(edit_D.getText().length() != 0 && edit_S.getText().length() != 0){
-                        Double res_pM = ((Double.parseDouble(edit_D.getText().toString()) - Double.parseDouble(edit_S.getText().toString()))*Double.parseDouble(edit_S.getText().toString()))/40.55;
-                        txt_M.setText(" M = " + String.format( Locale.US, "%.2f", res_pM));
+                        Double res_pM = (((Double.parseDouble(edit_D.getText().toString()) - Double.parseDouble(edit_S.getText().toString()))*Double.parseDouble(edit_S.getText().toString()))/40.55)*Double.parseDouble(edit_L.getText().toString());
+                        txt_M.setText(String.format( Locale.US, "%.2f", res_pM));
                     }
                 }else txt_M.setText("***");
             }
@@ -313,15 +308,6 @@ private static final int REQUEST_WEIGHT = 1;
         });
 */
 //endregion
-// region By_Button
-        LinearLayout layout_by = (LinearLayout) v.findViewById(R.id.by);
-        layout_by.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
-                transaction_start.replace(R.id.container,buy).commit();
-            }
-        });
 
         txt_c = (TextView) v.findViewById(R.id.txt_count);
         txt_c.setText(mSettings.getString(APP_PREFERENCES_COUNT, ""));
@@ -331,9 +317,25 @@ private static final int REQUEST_WEIGHT = 1;
             count=0;
 
         }
-        //endregion
+
+// region By_Button
+        LinearLayout layout_by = (LinearLayout) v.findViewById(R.id.by);
+        layout_by.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(count==0){
+                    flag_add_one = true;
+                    layout_add.callOnClick();
+                }
+                else {
+                    FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
+                    transaction_start.replace(R.id.container,buy).commit();
+                }
+            }
+        });
+//endregion
 //region Add_Button
-        LinearLayout layout_add = (LinearLayout) v.findViewById(R.id.add);
+
         layout_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -389,6 +391,11 @@ private static final int REQUEST_WEIGHT = 1;
                             edit_D.setText("");
                             edit_S.setText("");
                             edit_L.setText("");
+                            if(flag_add_one){
+                                flag_add_one = false;
+                                FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
+                                transaction_start.replace(R.id.container,buy).commit();
+                            }
                             break;
                         }
                         else {
@@ -404,8 +411,6 @@ private static final int REQUEST_WEIGHT = 1;
                         }
                     }
                 }
-
-
             }
         });
         //endregion
@@ -432,43 +437,5 @@ private static final int REQUEST_WEIGHT = 1;
                         "<data>" + "<pipes>" +"<type_pipes>%s</type_pipes>" +"<L>%s</L>" + "<D>%s</D>" +"<S>%s</S>" + "<M>%s</M>" + "<box>%s</box>" + "</pipes>" + "</data>";
         return String.format(format,product.type_pipes, product.L, product.D, product.S, product.M, product.box + "");
     }
-    // TODO: Rename method, update argument and hook method into UI event
-    public static void hideSoftKeyboard(Activity activity) {
-        InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);
-    }
 
 }
-
-
-/**
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-
-    @Override
-    public void setArguments(Bundle args) {
-
-    }
-*/
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    /**
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }*/
-
-
-
