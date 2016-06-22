@@ -92,7 +92,20 @@
                                 foo:customFont="GOST type A.ttf" />
 
                            </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <admin.example.com.pipes_v2.TextViewPlus
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="S = 0,4мм"
+                                android:id="@+id/textView20"
+                                android:textColor="@color/white"
+                                android:textSize="25dp"
+                                foo:customFont="GOST type A.ttf" />
 
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="fill_parent"
@@ -394,7 +407,10 @@
             </LinearLayout>
         </LinearLayout>
 
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_yelow"></LinearLayout>
     </FrameLayout>
 </FrameLayout>
 

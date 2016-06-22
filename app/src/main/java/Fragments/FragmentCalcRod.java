@@ -69,6 +69,7 @@ public class FragmentCalcRod extends Fragment implements Main.OnBackPressedListe
     private OnFragmentInteractionListener mListener;
 
     public ArrayList<Product> products = new ArrayList<Product>();
+    boolean flag_add_one;
     public FragmentCalcRod() {
         // Required empty public constructor
     }
@@ -196,6 +197,7 @@ public class FragmentCalcRod extends Fragment implements Main.OnBackPressedListe
         });
 */
 //endregion
+        final LinearLayout layout_add = (LinearLayout) v.findViewById(R.id.add);
         //region Clear_Button
         LinearLayout cleaner = (LinearLayout) v.findViewById(R.id.clear);
         cleaner.setOnClickListener(new View.OnClickListener() {
@@ -211,8 +213,14 @@ public class FragmentCalcRod extends Fragment implements Main.OnBackPressedListe
         layout_by.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
-                transaction_start.replace(R.id.container,buy).commit();
+                if(count==0){
+                    flag_add_one = true;
+                    layout_add.callOnClick();
+                }
+                else {
+                    FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
+                    transaction_start.replace(R.id.container,buy).commit();
+                }
             }
         });
         txt_c = (TextView) v.findViewById(R.id.txt_count);
@@ -225,7 +233,7 @@ public class FragmentCalcRod extends Fragment implements Main.OnBackPressedListe
 
 //endregion
         //region Add_Button
-        LinearLayout layout_add = (LinearLayout) v.findViewById(R.id.add);
+
         layout_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -280,6 +288,11 @@ public class FragmentCalcRod extends Fragment implements Main.OnBackPressedListe
                     editor.apply();
                     edit_D.setText("");
                     edit_L.setText("");
+                    if(flag_add_one){
+                        flag_add_one = false;
+                        FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
+                        transaction_start.replace(R.id.container,buy).commit();
+                    }
                 }
 
             }

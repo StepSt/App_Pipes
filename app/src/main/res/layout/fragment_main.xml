@@ -38,7 +38,7 @@
             android:layout_width="170dp"
             android:layout_height="50dp"
             android:id="@+id/logo"
-            android:src="@mipmap/logo_menu"
+            android:src="@mipmap/logo_yelow"
             android:layout_gravity="left|bottom"
             android:layout_marginBottom="1dp"
             android:layout_marginLeft="1dp"

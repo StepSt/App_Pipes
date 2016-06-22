@@ -20,28 +20,41 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <admin.example.com.pipes_v2.TextViewPlus
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="top"
-        android:singleLine="true"
-        android:id="@+id/TextViewPlus_item_menu"
-        android:textColor="@color/white"
-        android:textSize="25dp"
-        foo:customFont="GOST type A.ttf"
-        xmlns:foo="http://schemas.android.com/apk/res-auto"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_weight="0.2"
-        android:layout_gravity="left" />
-    <ImageView
-        android:id="@+id/icon"
+        android:layout_height="match_parent">
+
+        <admin.example.com.pipes_v2.TextViewPlus
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top"
+            android:singleLine="true"
+            android:id="@+id/TextViewPlus_item_menu"
+            android:textColor="@color/white"
+            android:textSize="25dp"
+            foo:customFont="GOST type A.ttf"
+            xmlns:foo="http://schemas.android.com/apk/res-auto"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_weight="0.2"
+            android:layout_gravity="left" />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_keyboard_arrow_right_white_48px"
+            android:layout_weight="1"
+            android:layout_gravity="right">
+        </ImageView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/ic_keyboard_arrow_right_white_48px"
-        android:layout_weight="1"
-        android:layout_gravity="right">
-    </ImageView>
+        android:layout_height="10dp"></LinearLayout>
 </LinearLayout>
