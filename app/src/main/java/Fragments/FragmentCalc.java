@@ -402,7 +402,12 @@ private static final int REQUEST_WEIGHT = 1;
                             if(array_bu[i] > Integer.parseInt(edit_D.getText().toString())){
                                 Dialog_pipes_by fragment_1 = new Dialog_pipes_by();
                                 bundle1 = new Bundle();
-                                bundle1.putString("min",array_bu[i-1]+"");
+                                if(i==0){
+                                    bundle1.putString("min",array_bu[i]+"");
+                                }
+                                else {
+                                    bundle1.putString("min",array_bu[i-1]+"");
+                                }
                                 bundle1.putString("max", array_bu[i]+"");
                                 fragment_1.setArguments(bundle1);
                                 openWeightPicker();
