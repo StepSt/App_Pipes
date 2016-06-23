@@ -73,7 +73,7 @@ public class FragmentAbout extends Fragment implements Main.OnBackPressedListene
         //mWebView.getSettings().setBuiltInZoomControls(true);
         mWebView.setInitialScale(100);
         // указываем страницу загрузки
-        mWebView.loadUrl("https://2gis.ru/ufa/geo/2393172957201846%2C56.126887%2C54.77326/firm/2393065583037146?queryState=center%2F56.126192%2C54.773701%2Fzoom%2F18");
+        mWebView.loadUrl("https://2gis.ru/ufa/geo/2393172957201846%2C56.12686%2C54.773242/firm/2393065583037146?queryState=center%2F56.126136%2C54.773602%2Fzoom%2F18");
         mWebView.setWebViewClient(new MyWebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {

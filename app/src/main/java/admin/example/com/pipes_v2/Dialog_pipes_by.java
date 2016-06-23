@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -26,6 +27,17 @@ public class Dialog_pipes_by extends DialogFragment
             final CheckBox checkBox_min = (CheckBox) view.findViewById(R.id.checkBox_min);
             final CheckBox checkBox_max = (CheckBox) view.findViewById(R.id.checkBox_max);
             checkBox_min.setText(getArguments().getString("min"));
+            Log.d("Log>",getArguments().getString("max").toString());
+            Log.d("Log>",getArguments().getString("min").toString());
+switch (getArguments().getString("max").toString())
+{
+    case "114":
+        checkBox_max.setVisibility(View.INVISIBLE);
+        break;
+    default:
+        checkBox_max.setVisibility(View.VISIBLE);
+        break;
+}
             checkBox_max.setText(getArguments().getString("max"));
             checkBox_min.setOnClickListener(new View.OnClickListener() {
                 @Override
