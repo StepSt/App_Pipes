@@ -18,7 +18,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import admin.example.com.pipes_v2.R;
@@ -27,9 +29,10 @@ import admin.example.com.pipes_v2.R;
  * Created by StepByStep on 16.05.2016.
  */
     public class FragmentStart extends ListFragment {
-
+    public int count;
     public static final String APP_PREFERENCES = "mysettings";
     public static final String APP_PREFERENCES_TYPE = "Type_pipes"; // выбранный тип
+    public static  final String APP_PREFERENCES_COUNT = "Count"; // cчетчик
     SharedPreferences mSettings;
 
     FragmentCalc calc;
@@ -37,20 +40,30 @@ import admin.example.com.pipes_v2.R;
     FragmentCalcRod calcRod;
     FragmentCalcCut calcCut;
     FragmentCalcSheet calcSheet;
+    TextView txt_c;
+    FragmentBuy buy;
 
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         String[] values = new String[] { "Труба БУ", "Труба восстановленная", "Труба НКТ"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(),R.layout.spinner_item_menu, R.id.TextViewPlus_item_menu, values);
         setListAdapter(adapter);
-        Context context = getActivity();
-        mSettings = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+
     }
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_main, container, false);
         String[] values = new String[] { "Штанга", "Труба профильная", "Лист профильный"};
+        Context context = getActivity();
+        mSettings = context.getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        txt_c = (TextView) v.findViewById(R.id.txt_count);
+        txt_c.setText(mSettings.getString(APP_PREFERENCES_COUNT, ""));
+        try {
+            count = Integer.parseInt(txt_c.getText().toString());
+        }catch (Exception e){
+            count=0;
 
+        }
         final ListView listView1 = (ListView) v.findViewById(R.id.list1);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity().getBaseContext(),R.layout.spinner_item_menu_2, R.id.TextViewPlus_item_menu, values);
         listView1.setAdapter(adapter1);
@@ -78,7 +91,24 @@ import admin.example.com.pipes_v2.R;
                 editor.apply();
             }
         });
-
+// region By_Button
+        buy = new FragmentBuy();
+        LinearLayout layout_by = (LinearLayout) v.findViewById(R.id.by);
+        layout_by.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(count==0){
+                    Toast toast = Toast.makeText(getActivity(),
+                            "В корзине нет товаров", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
+                else {
+                    FragmentTransaction transaction_start = getFragmentManager().beginTransaction();
+                    transaction_start.replace(R.id.container,buy).commit();
+                }
+            }
+        });
+//endregion
         return v;
     }
 

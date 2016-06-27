@@ -96,7 +96,7 @@ public class FragmentPrice extends Fragment implements Main.OnBackPressedListene
         // включаем поддержку JavaScript
         mWebView.getSettings().setJavaScriptEnabled(true);
         mWebView.getSettings().setSupportZoom(true);
-        //mWebView.getSettings().setBuiltInZoomControls(true);
+        mWebView.getSettings().setBuiltInZoomControls(true);
         mWebView.setInitialScale(100);
         // указываем страницу загрузки
         mWebView.loadUrl("http://ufatruba.ru/#price");

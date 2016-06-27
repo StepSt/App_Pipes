@@ -45,8 +45,10 @@ import admin.example.com.pipes_v2.R;
  * Use the {@link FragmentBuy#newInstance} factory method to
  * create an instance of this fragment.
  */
+
 public class FragmentBuy extends Fragment implements Main.OnBackPressedListener
 {
+    EditText citi_delivery;
     FragmentStart start;
     @Override
     public void onBackPressed() {
@@ -148,7 +150,7 @@ public class FragmentBuy extends Fragment implements Main.OnBackPressedListener
         });
         //region Clear_Button
         //region Window
-        String title = "Запрос";
+        String title = "Подтверждение удаления";
         String message = "Вы уверены";
         String button1String = "Нет";
         String button2String = "Да";
@@ -231,11 +233,14 @@ ad.setPositiveButton(button1String, new DialogInterface.OnClickListener() {
                                     message_string += "- Тип: " + p.type_pipes + " Длинна: " + p.L + " Масса: " + p.M + "\n";
                             }
                     }
-                    EditText citi_delivery = (EditText) v.findViewById(R.id.editText_CitiDelivery);
-                    EditText address_delivery = (EditText) v.findViewById(R.id.editText_AdressDelivery);
-                    EditText prim_delivery = (EditText) v.findViewById(R.id.editText_PrimDelivery);
+                    citi_delivery = (EditText) getActivity().findViewById(R.id.editText_CitiDelivery);
+                    EditText address_delivery = (EditText) getActivity().findViewById(R.id.editText_AdressDelivery);
+                    EditText prim_delivery = (EditText) getActivity().findViewById(R.id.editText_PrimDelivery);
                     if (checkBox_delivery.isChecked()) {
-                        message_string += "\n" + "Доставка по адресу: " + citi_delivery.getText().toString() + " " + address_delivery.getText().toString() + " " + prim_delivery.getText().toString();
+                        message_string += "\n" + "Доставка по адресу: " +
+                                citi_delivery.getText().toString() + " "
+                                + address_delivery.getText().toString() + " "
+                                + prim_delivery.getText().toString();
                     }
                     Log.d("Log>","message" + message_string);
                     email.putExtra(Intent.EXTRA_TEXT, message_string);
